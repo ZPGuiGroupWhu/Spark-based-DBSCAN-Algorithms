@@ -52,6 +52,11 @@ object KD_DBSCAN {
 //    println("生成采样点之前时间："+System.currentTimeMillis())
     // 生成采样点，采样率为(0,1]
     val sampleVectors=points.sample(false,sampleRate)
+    val originPoints=points.map{vector=>
+      var point=new KDBSCANPoint()
+      point.setValue(Array(vector(1),vector(2)))
+      point
+    }
     val samplePoints=sampleVectors.map{vector=>
       var point=new KDBSCANPoint()
       point.setValue(Array(vector(1),vector(2)))
@@ -60,7 +65,7 @@ object KD_DBSCAN {
 //    println("生成采样点之后时间："+System.currentTimeMillis())
 
     //获取分区矩形
-    val rectangleList=KDTree.build(samplePoints.toLocalIterator.toList.asJava).getRectangle(numPartition).asScala.toList
+    val rectangleList=KDTree.build(samplePoints.toLocalIterator.toList.asJava,originPoints.toLocalIterator.toList.asJava).getRectangle(numPartition).asScala.toList
 //    println("获取分区矩形时间："+System.currentTimeMillis())
 
     //生成内中外矩形

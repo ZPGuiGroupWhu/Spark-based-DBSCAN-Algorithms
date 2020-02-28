@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092322b8-1f99-4d80-b592-481dfe11240b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/analysis/compile" beforeDir="false" afterPath="$PROJECT_DIR$/target/analysis/compile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/kdbscan-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/kdbscan-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -159,7 +158,7 @@
     <session id="-2068181126">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.21" value="1" />
@@ -168,29 +167,29 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="30" />
-          <entry key="scala" value="48" />
+          <entry key="java" value="32" />
+          <entry key="scala" value="49" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="30" />
-          <entry key="Scala" value="48" />
+          <entry key="JAVA" value="32" />
+          <entry key="Scala" value="49" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="16" />
-          <entry key="scala" value="36" />
+          <entry key="java" value="64" />
+          <entry key="scala" value="62" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="16" />
-          <entry key="Scala" value="36" />
+          <entry key="JAVA" value="64" />
+          <entry key="Scala" value="62" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
@@ -199,31 +198,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/RTree_DBSCAN/RTree_DBSCAN.scala">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
-              <folding>
-                <element signature="e#54#95#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="480">
+              <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+            <state relative-caret-position="353">
+              <caret line="265" lean-forward="true" selection-start-line="265" selection-end-line="265" />
             </state>
           </provider>
         </entry>
@@ -268,12 +255,10 @@
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDSG/KDSG.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/DBSCANRectangle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/DBSCAN_final.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/scriptFile.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN_final.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/DBSCAN_final.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN1.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/RTree_DBSCAN/DBSCAN_native.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/algorithms/DBSCAN/DBSCAN.scala" />
@@ -281,6 +266,8 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/RTree_DBSCAN/RTree_DBSCAN.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java" />
       </list>
     </option>
   </component>
@@ -323,7 +310,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1940" />
@@ -412,7 +399,7 @@
               <item name="dbscan" type="462c0819:PsiDirectoryNode" />
               <item name="scala" type="462c0819:PsiDirectoryNode" />
               <item name="algorithms" type="462c0819:PsiDirectoryNode" />
-              <item name="RTree_DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDTRee_DBSCAN_parallel" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DBSCAN_Algorithms" type="b2602c69:ProjectViewProjectNode" />
@@ -428,7 +415,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1582881561950" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1582905333897" />
     <property name="last_opened_file_path" value="D:/kdsg/KDBSCAN" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -512,15 +499,15 @@
       <workItem from="1582788276489" duration="5384000" />
       <workItem from="1582851556043" duration="8954000" />
       <workItem from="1582881698454" duration="1217000" />
-      <workItem from="1582886756262" duration="2454000" />
+      <workItem from="1582886756262" duration="3473000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63822000" />
+    <option name="totallyTimeSpent" value="64841000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31106612" />
@@ -554,6 +541,38 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31106612" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5959004" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.35139093" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.329429" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" weight="0.3299595" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3299595" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -651,13 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/Node.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-312">
@@ -700,10 +712,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="155">
+          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -717,17 +736,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        <state relative-caret-position="480">
+          <caret line="67" column="31" lean-forward="true" selection-start-line="67" selection-start-column="31" selection-end-line="67" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="42" column="37" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="37" />
+        <state relative-caret-position="353">
+          <caret line="265" lean-forward="true" selection-start-line="265" selection-end-line="265" />
         </state>
       </provider>
     </entry>
