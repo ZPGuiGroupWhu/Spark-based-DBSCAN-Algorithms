@@ -27,7 +27,7 @@ public class KDTree<T> implements Serializable {//实现序列化接口
 		 *补充if else判断  保证程序的健壮性
 		 */
 		if (key.length!=dimensions){
-			throw new RuntimeException("KDTree: wrong key size!");
+			throw new RuntimeException("KDTree_v2: wrong key size!");
 		}else
 		{
 			root = KDNode.insertNode(new Point(key), value, root, 0, dimensions);//根节点level为0

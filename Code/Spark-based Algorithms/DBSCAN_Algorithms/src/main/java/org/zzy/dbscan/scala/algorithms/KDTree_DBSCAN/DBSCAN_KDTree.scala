@@ -33,7 +33,7 @@ object DBSCAN_KDTree {
     logger_kdbscan.info(s"About to start fitting")
 
 //    println("建树前："+System.currentTimeMillis())
-    val kdtreePoints=KDTree.build(points.toList.asJava)
+    val kdtreePoints=KDTree.build(points.toList.asJava,points.toList.asJava)
 //    println("建树后："+System.currentTimeMillis())
 
     def fit():Iterable[KDBSCANPoint] ={
