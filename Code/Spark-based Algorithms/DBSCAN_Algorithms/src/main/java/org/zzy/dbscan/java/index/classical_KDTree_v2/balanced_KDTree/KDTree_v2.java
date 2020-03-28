@@ -3,6 +3,8 @@ package org.zzy.dbscan.java.index.classical_KDTree_v2.balanced_KDTree;
 import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint;
 import org.zzy.dbscan.java.index.balanced_KDTree.Node;
 import org.zzy.dbscan.java.index.balanced_KDTree.DBSCANRectangle;
+import org.zzy.dbscan.java.index.classical_KDTree.Point;
+import scala.tools.nsc.doc.model.Val;
 
 
 import java.io.Serializable;
@@ -94,6 +96,24 @@ public class KDTree_v2 implements Serializable {
             }
             Arrays.sort(d);
             return d;
+        }
+        static List<KDBSCANPoint> compare(List<KDBSCANPoint> input,int dimention){
+            Collections.sort(input, new Comparator<KDBSCANPoint>() {
+                @Override
+                public int compare(KDBSCANPoint o1, KDBSCANPoint o2) {
+                    if(o1.getValue()[dimention]<o2.getValue()[dimention]){
+                        return -1;
+                    }
+                    if(o1.getValue()[dimention]==o2.getValue()[dimention]){
+                        return 0;
+                    }
+                    if(o1.getValue()[dimention]>o2.getValue()[dimention]){
+                        return 1;
+                    }
+                    return 0;
+                }
+            });
+            return input;
         }
 
         /**
@@ -205,9 +225,6 @@ public class KDTree_v2 implements Serializable {
         Collections.sort(list, new Comparator<double[]>() {
             @Override
             public int compare(double[] o1, double[] o2) {
-
-
-
                 if(o1[dimension]<o2[dimension])
                     return -1;
 
@@ -245,10 +262,11 @@ public class KDTree_v2 implements Serializable {
     private KDTree_v2() {}
     /**
      * 构建树
-     * @param input 输入
+     * @param input_ 输入
      * @return KDTree树
      */
-    public static KDTree_v2 build(List<KDBSCANPoint> input, List<KDBSCANPoint> MBRinput){
+    public static KDTree_v2 build(List<KDBSCANPoint> input_){
+        List<KDBSCANPoint> input=new ArrayList(input_);
         int n = input.size();//数据条数
         int m=input.get(0).getValue().length;//维度
         ArrayList<double[]> data =new ArrayList<double[]>(n);
@@ -259,79 +277,40 @@ public class KDTree_v2 implements Serializable {
             data.add(d);
         }
 
-        int n2 = MBRinput.size();//数据条数
-        int m2=MBRinput.get(0).getValue().length;//维度
-        ArrayList<double[]> MBR =new ArrayList<double[]>(n);
-        for(int i=0;i<n2;i++){
-            double[] d = new double[m2];
-            for(int j=0;j<m2;j++)
-                d[j]=MBRinput.get(i).getValue()[j];
-            MBR.add(d);
-        }
-
         //原始数据每一维度的最小最大值maxmin(0)表示所有维度最小值数组，maxmin(1)表示所有维度最大值数组
-        double[][] maxmin= UtilZ.maxmin(MBR, m2);
+        double[][] maxmin= UtilZ.maxmin(data, m);
 
         DBSCANRectangle rectangle_kd=new DBSCANRectangle(maxmin[0][0],maxmin[0][1],maxmin[1][0],maxmin[1][1]);
         KDTree_v2 tree = new KDTree_v2();
         tree.kdtree = new Node();
         int level=0;
-        tree.buildDetail(tree.kdtree, data, m,rectangle_kd,level);
+        tree.buildDetail(tree.kdtree, input, m,rectangle_kd,level);
         return tree;
     }
     /**
      * 循环构建树
      * @param node 节点
-     * @param data 数据
+     * @param input 数据
      * @param dimentions 数据的维度
      */
-    private void buildDetail(Node node, ArrayList<double[]> data, int dimentions, DBSCANRectangle rectangle, int level){
+    private void buildDetail(Node node, List<KDBSCANPoint> input, int dimentions, DBSCANRectangle rectangle, int level){
         int levelNext=level+1;
-        if(data.size()==0){
+        if(input.size()==0){
             return;
         }
-        if(data.size()==1){
-           KDBSCANPoint point=new KDBSCANPoint();
-           point.setValue(data.get(0));
-           node.setLeaf(true);
-           node.setValue(point);
-           node.setLeval(level);
-           node.setRectangle(rectangle);
-           return;
+        if(input.size()==1){
+            node.setLeaf(true);
+            node.setValue(input.get(0));
+            node.setLeval(level);
+            node.setRectangle(rectangle);
+            return;
         }
-
-
-        //选择方差最大的维度
-//        node.setPartitionDimention(-1);
-//        double var = -1;
-//        double tmpvar;
-//        for(int i=0;i<dimentions;i++){
-//            tmpvar= UtilZ.variance(data, i);
-//            if (tmpvar>var){
-//                var = tmpvar;
-//
-//                node.setPartitionDimention(i);
-//            }
-//        }
-
-
-//        //如果方差=0，表示所有数据都相同，判定为叶子节点
-//        if(var==0){
-//            KDBSCANPoint point=new KDBSCANPoint();
-//            point.setValue(data.get(0));
-//            node.setLeval(level);
-//            node.setLeaf(true);
-//            node.setValue(point);
-//            node.setRectangle(rectangle);
-//            return;
-//        }
-        //设置分割维度
         node.setPartitionDimention(level%dimentions);
 
         // 设置分割值
-        double[] dataSort= UtilZ.dataSort(data,node.getPartitionDimention());
-        double dataMedian=dataSort[dataSort.length/2];
-        double dataMin=dataSort[0];
+        List<KDBSCANPoint> dataSort= UtilZ.compare(input,node.getPartitionDimention());
+        double dataMedian=dataSort.get(dataSort.size()/2).getValue()[node.getPartitionDimention()];
+        double dataMin=dataSort.get(0).getValue()[node.getPartitionDimention()];
         node.setPartitionValue(dataMedian);
         node.setRectangle(rectangle);
         node.setLeval(level);
@@ -348,19 +327,19 @@ public class KDTree_v2 implements Serializable {
             rectangleRight=new DBSCANRectangle(rectangle.getX(),node.getPartitionValue(),rectangle.getX2(),rectangle.getY2());
         }
 
-        int size =data.size();
-        ArrayList<double[]> left = new ArrayList<double[]>(size);
-        ArrayList<double[]> right = new ArrayList<double[]>(size);
+        int size =input.size();
+        List<KDBSCANPoint> left=new ArrayList<>(size);
+        List<KDBSCANPoint> right=new ArrayList<>(size);
 
-        for(double[] d:data){
+        for(KDBSCANPoint d:input){
             if(dataMin==dataMedian){
-                if (d[node.getPartitionDimention()]<=node.getPartitionValue()) {
+                if (d.getValue()[node.getPartitionDimention()]<=node.getPartitionValue()) {
                     left.add(d);
                 }else {
                     right.add(d);
                 }
             }else {
-                if (d[node.getPartitionDimention()]<node.getPartitionValue()) {
+                if (d.getValue()[node.getPartitionDimention()]<node.getPartitionValue()) {
                     left.add(d);
                 }else {
                     right.add(d);
@@ -481,13 +460,20 @@ public class KDTree_v2 implements Serializable {
 
     /**
      * 范围查询——kdTree
-     * @param input 查询的点
+     * @param point 查询的点
      * @param eps   邻域半径
      * @return      邻域列表
      */
-    public List<KDBSCANPoint> rangeSearch(double [] input, double eps){
+    public List<KDBSCANPoint> rangeSearch(KDBSCANPoint point, double eps){
+        int clusterID=point.getId();
+        double[] input= point.getValue();
         Node node=kdtree;
         List<KDBSCANPoint>list=new ArrayList<>();
+        KDBSCANPoint pointchange=new KDBSCANPoint();
+        pointchange.setId(point.getId());
+        pointchange.setValue(point.getValue());
+        pointchange.setCluster(clusterID);
+        list.add(pointchange);
         Stack<Node> stack = new Stack<Node>();
         //自顶向下，直至叶节点
         while(!node.isLeaf()){
@@ -501,7 +487,11 @@ public class KDTree_v2 implements Serializable {
         }
         double distance= UtilZ.distance(input,node.getValue().getValue());
         if(distance<=Math.pow(eps,2)){
-            list.add(node.getValue());
+            KDBSCANPoint kdbscanPoint=new KDBSCANPoint();
+            kdbscanPoint.setId(node.getValue().getId());
+            kdbscanPoint.setValue(node.getValue().getValue());
+            kdbscanPoint.setCluster(clusterID);
+            list.add(kdbscanPoint);
         }
         //回溯
         Node nodeRec=null;
@@ -511,7 +501,11 @@ public class KDTree_v2 implements Serializable {
             if(nodeRec.isLeaf()){
                 tdis= UtilZ.distance(input, nodeRec.getValue().getValue());
                 if(tdis<=Math.pow(eps,2)){
-                    list.add(nodeRec.getValue());
+                    KDBSCANPoint kdbscanPointRec=new KDBSCANPoint();
+                    kdbscanPointRec.setId(nodeRec.getValue().getId());
+                    kdbscanPointRec.setValue(nodeRec.getValue().getValue());
+                    kdbscanPointRec.setCluster(clusterID);
+                    list.add(kdbscanPointRec);
                 }
             }else {
                 /**
@@ -533,7 +527,11 @@ public class KDTree_v2 implements Serializable {
                     }
                     tdis= UtilZ.distance(input, nodeRec.getValue().getValue());
                     if(tdis<=Math.pow(eps,2)){
-                        list.add(nodeRec.getValue());
+                        KDBSCANPoint kdbscanPointRec=new KDBSCANPoint();
+                        kdbscanPointRec.setId(nodeRec.getValue().getId());
+                        kdbscanPointRec.setValue(nodeRec.getValue().getValue());
+                        kdbscanPointRec.setCluster(clusterID);
+                        list.add(kdbscanPointRec);
                     }
                 }
             }

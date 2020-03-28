@@ -23,13 +23,10 @@ public class KDTree<T> implements Serializable {//实现序列化接口
 
 	//插入树结构
 	public void insertTree(double[] key, Point value) {
-		/**
-		 *补充if else判断  保证程序的健壮性
-		 */
 		if (key.length!=dimensions){
 			throw new RuntimeException("KDTree_v2: wrong key size!");
 		}else
-		{
+		{                           // 将坐标作为 key
 			root = KDNode.insertNode(new Point(key), value, root, 0, dimensions);//根节点level为0
 		}
 		nodeCount++;
@@ -44,15 +41,16 @@ public class KDTree<T> implements Serializable {//实现序列化接口
 	}
 
 
-
+	// 范围查询 lowKey是左下角 upKey是右上角
 	public List<Point> range(double[] lowKey, double[] upKey,double[] key,double Eps) {
 
 		Vector<KDNode> nodeVector = new Vector<>();
 		KDNode.rangeSearch(new Point(lowKey), new Point(upKey), root, 0, dimensions, key,Eps, nodeVector);
+
 		List<Point> valueList = new ArrayList<>(nodeVector.size());
 		for (int i = 0; i < nodeVector.size(); ++i) {
-			KDNode node = nodeVector.elementAt(i);
-			valueList.add(i, node.value);
+			KDNode node = nodeVector.elementAt(i);// 获取指定位置的值
+			valueList.add(i, node.value); //在指定的位置插入指定的值
 		}
 		return valueList;
 	}
@@ -63,6 +61,7 @@ public class KDTree<T> implements Serializable {//实现序列化接口
 	}
 
 	public List<Point> rangeSearch(double[] key, double Eps) {
+		//构造一个矩形
 		double[][] corners = new double[][] { { key[0] - Eps, key[1] - Eps }, { key[0] + Eps, key[1] + Eps } };
 		return range(corners[0], corners[1],key,Eps);
 	}

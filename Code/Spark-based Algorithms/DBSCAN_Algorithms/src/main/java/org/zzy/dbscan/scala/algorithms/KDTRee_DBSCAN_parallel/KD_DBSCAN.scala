@@ -29,12 +29,12 @@ object KD_DBSCAN {
 
     System.setProperty("hadoop.home.dir","D:/kdsg/")//本地缺少hadoop环境，所以要加上
     val master="local[*]"
-    val eps="0.001".toDouble
-    val minpts="25".toInt
-    val inPath="D:/kdsg/in/hubei.csv"
-    val outPath="D:/kdsg/out/191226/湖北数据/KDBSCAN_eps0.001_minpts25_core4"
+    val eps="10".toDouble
+    val minpts="15".toInt
+    val inPath="D:/kdsg/in/origin.csv"
+    val outPath="D:/kdsg/out/200320/kdbscan"
     val numPartition="4".toInt
-    val sampleRate="0.01".toDouble
+    val sampleRate="1".toDouble
     val conf=new SparkConf()
     conf.setAppName("KDBSCAN")
       .setMaster(master)
@@ -97,7 +97,9 @@ object KD_DBSCAN {
         .flatMapValues(points =>
         new DBSCAN_KDTree.KDBSCAN(points,eps,minpts).fit())
         .cache()
-//    println("本地聚类之后时间："+System.currentTimeMillis())
+//    clustered.foreach(println)
+
+    //    println("本地聚类之后时间："+System.currentTimeMillis())
 
     //找到所有的待合并点
     val mergePoints =
@@ -120,11 +122,12 @@ object KD_DBSCAN {
         .flatMapValues(findAdjacencies)
         .values
         .collect()
-
+    adjacencies.foreach(println)
     //生成连通图
     val adjacencyGraph = adjacencies.foldLeft(DBSCANGraph[ClusterId]()) {
       case (graph, (from, to)) => graph.connect(from, to)
     }
+
     //找到所有类簇的id——(partitionID，clusterID)
     val localClusterIds =
       clustered

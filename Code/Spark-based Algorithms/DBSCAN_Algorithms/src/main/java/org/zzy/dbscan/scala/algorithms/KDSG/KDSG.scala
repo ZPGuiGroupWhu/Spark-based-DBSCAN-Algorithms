@@ -41,13 +41,13 @@ object KDSG{
 //    val master = args(0)
     val master="local[*]"
 //    val fname = args(1)
-    val fname="D:/kdsg/in/POI_id.csv"
+    val fname="D:/kdsg/in/origin.csv"
 //    val outpath = args(2)
-    val outpath="D:/kdsg/out/191226/kdsg_POI"
+    val outpath="D:/kdsg/out/200314/kdsg"
 //    val epsilon = args(3)
-    val epsilon="0.01"
+    val epsilon="10"
 //    val minPts = args(4).toInt
-    val minPts="1000".toInt
+    val minPts="15".toInt
     val conf = new SparkConf()//SparkConf包含了Spark集群配置的各种参数
     //    GraphXUtils.registerKryoClasses(conf)
    // val jars: Array[String] = Array("hdfs://master:9000/spark/jar/1.jar");//文件的jar包位置，需要将程序打成jar包
@@ -84,15 +84,28 @@ object KDSG{
     }).filter(_._2.size > minPts).flatMap(coreRange => {//核心点441
       for (p <- coreRange._2) yield Edge(coreRange._1.getId, p.getId, coreRange._1)//Edge——单一有向边
     })//.distinct()  //得到所有核心点与边界点组成的边，形式为(core.id,border.id,core)
-//    println("原始边数："+edges.collect().length)//7837 则点的个数为7837+441=8278
+    println("原始边数："+edges.collect().length)//7837 则点的个数为7837+441=8278
+//    val aaaaaaaa=edges.collect().length
+//    val ccccccccccc=points.map(tuple => {
+//      val point = tuple._2
+//      //      var result: ListBuffer[Edge[Point]] = ListBuffer(new Edge[Point]());
+//      var list = broadcastPointKDTree.value.rangeSearch(point.coord, epsilon.toDouble).asScala
+//      (point, list) // list里面存储了所有的邻域点
+//    }).filter(_._2.size > minPts).flatMap(scscsc=>scscsc._2).collect().length
+//
+//    println(ccccccccccc)
 
-    val srcGraph = Graph.fromEdges(edges,0)
-  //  println("num edges = " + srcGraph.numEdges)//查看边的个数 157347
-  //  println("num vertices = " + srcGraph.numVertices)//查看点的个数 9174
+
+    val srcGraph = Graph.fromEdges(edges,10)
+    println("num edges = " + srcGraph.numEdges)//查看边的个数 157347
+    println("num vertices = " + srcGraph.numVertices)//查看点的个数 9174
     val cc = ConnectedComponents.run(srcGraph)
-  //  println("图连通顶点数"+cc.vertices.map { case (pid, point) => point }.collect().length) //9174或者4248
+    val sssssssssssssssss=cc.vertices.map { case (pid, point) => point }.distinct().collect().length
+
+    println("图连通顶点数"+cc.vertices.map { case (pid, point) => point }.collect().length) //9174或者4248
   //  println("图连通不重复顶点数"+cc.vertices.map { case (pid, point) => point }.distinct().collect().length) //9或者66
-   val result=points.leftOuterJoin(cc.vertices).map {s=>
+
+    val result=points.leftOuterJoin(cc.vertices).map {s=>
       val resultPoint=new Point()
     resultPoint.setCoord(s._2._1.coord)
      if (s._2._2!=None){
@@ -102,6 +115,7 @@ object KDSG{
      }
     resultPoint
   }
+
     println("结束时间："+System.currentTimeMillis())
 result.repartition(1).saveAsTextFile(outpath)
 //     println("结果点数"+result.collect().length)
@@ -128,7 +142,8 @@ result.repartition(1).saveAsTextFile(outpath)
 //    sss.vertices.saveAsTextFile(outpath)
 //        cc.vertices.saveAsTextFile(outpath)
 //    cc.vertices.distinct().repartition(1).saveAsTextFile(outpath)
-//    cc.vertices.map { case (pid, point) => point }.distinct().saveAsTextFile(outpath)
+//    cc.vertices.map { case (pid, point) => point }.distinct().repartition(1).saveAsTextFile(outpath)
+    //    cc.vertices.map { case (pid, point) => point }.distinct().saveAsTextFile(outpath)
     //    cc.vertices.foreach(println)
     //    println("Components: " + cc.vertices.map { case (vid, data) => data }.distinct())
     sc.stop()

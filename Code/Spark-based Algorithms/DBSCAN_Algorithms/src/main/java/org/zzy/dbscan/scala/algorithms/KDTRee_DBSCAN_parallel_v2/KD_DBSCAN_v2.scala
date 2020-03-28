@@ -1,14 +1,16 @@
 package org.zzy.dbscan.scala.algorithms.KDTRee_DBSCAN_parallel_v2
 
+import org.apache.spark.graphx.{Edge, Graph}
 import org.apache.spark.ml.linalg.Vectors
 import org.apache.spark.{SparkConf, SparkContext}
 import org.zzy.dbscan.java.index.balanced_KDTree.{DBSCANRectangle, KDBSCANPoint, KDTree}
-import org.zzy.dbscan.scala.algorithms.KDTree_DBSCAN.DBSCAN_KDTree
 import org.zzy.dbscan.scala.merge.DBSCANGraph
+
 import scala.collection.JavaConverters._
 object KD_DBSCAN_v2 {
   type Margins=(DBSCANRectangle,DBSCANRectangle,DBSCANRectangle)// inner、main、outer
   type ClusterId=(Int,Int) // 定义类簇格式(partition,localClusterID)
+
   def main(args: Array[String]): Unit = {
 //    //System.setProperty("hadoop.home.dir","D:/kdsg/")//本地缺少hadoop环境，所以要加上
 //    val master=args(0)
@@ -29,19 +31,18 @@ object KD_DBSCAN_v2 {
 
     System.setProperty("hadoop.home.dir","D:/kdsg/")//本地缺少hadoop环境，所以要加上
     val master="local[*]"
-    val eps="0.001".toDouble
-    val minpts="25".toInt
-    val inPath="D:/kdsg/in/hubei.csv"
-    val outPath="D:/kdsg/out/191226/湖北数据/KDBSCAN_eps0.001_minpts25_core4"
-    val numPartition="4".toInt
-    val sampleRate="0.01".toDouble
+    val eps="10".toDouble
+    val minpts="15".toInt
+    val inPath="D:/kdsg/in/origin.csv"
+    val outPath="D:/kdsg/out/200327/kdbscan1"
+    val numPartition="1".toInt
+    val sampleRate="1".toDouble
     val conf=new SparkConf()
-    conf.setAppName("KDBSCAN")
-      .setMaster(master)
+                  .setAppName("KDBSCAN")
+                  .setMaster(master)
 
+   lazy val sc=new SparkContext(conf)
 
-
-    val sc=new SparkContext(conf)
     val lines=sc.textFile(inPath)
     // 读取数据并转化为向量形式
     val points=lines.map{line=>
@@ -72,7 +73,6 @@ object KD_DBSCAN_v2 {
     val localMargins=rectangleList.map(p=>(p.shrink(eps), p, p.shrink(-eps))).zipWithIndex
     //广播分区到集群
     val margins=points.context.broadcast(localMargins)
-
 //    println("进行数据分区之前时间："+System.currentTimeMillis())
     //分配点到各自对应的分区
     val duplicated = for {
@@ -87,19 +87,23 @@ object KD_DBSCAN_v2 {
     } yield (id, point)  // 这一步有一些点是冗余的=>边界点
     // yield关键字的作用是记录下每一次的循环产生的值，循环结束后将所有的yield值组成集合返回
 //    println("进行数据分区之后时间："+System.currentTimeMillis())
-
     val numOfPartitions=rectangleList.size
-
-//    println("本地聚类之前时间："+System.currentTimeMillis())
+    //    println("本地聚类之前时间："+System.currentTimeMillis())
     //本地聚类
     val clustered =
       duplicated
         .groupByKey(numOfPartitions) // 将相同的key的值分组为单个序列，将结果分为numOfPartitions个分区
-        .flatMapValues(points =>
-        new DBSCAN_KDTree.KDBSCAN(points,eps,minpts).fit())
+        .flatMapValues(points =>{
+        new KDBSCAN_local(points,eps,minpts).fit()
+//        new DBSCAN_KDTree.KDBSCAN(points,eps,minpts).fit()
+      })
         .cache()
+    /**
+      * clustered (partitionID，KDBSCANPOINT), KDBSCANPOINT 里面有ClusterID、坐标以及类簇标记
+      */
 //    println("本地聚类之后时间："+System.currentTimeMillis())
-
+//clustered.foreach(println)
+//    val sssssss=1
     //找到所有的待合并点
     val mergePoints =
       clustered
@@ -110,10 +114,15 @@ object KD_DBSCAN_v2 {
                 case ((inner, main, outer), _) => outer.contains(point) && !inner.almostContains(point)
               })// 得到所有在主矩形内部但是不在内矩形的点
               .map({
-              case (_, newPartition) => (newPartition, (partition, point))
+              case (_, newPartition) =>   (newPartition, (partition, point))
             })
         })
         .groupByKey()
+
+    /**
+      * margins的格式是 ((内矩形，中矩形，外矩形)，分区)
+      * mergePoints 格式 (newPartition,(partition,point)) 这里的 newPartition 就是margins里面的分区
+      */
 
     //从合并点中找出有多个名字的点
     val adjacencies =
@@ -121,15 +130,15 @@ object KD_DBSCAN_v2 {
         .flatMapValues(findAdjacencies)
         .values
         .collect()
-
     //生成连通图
     val adjacencyGraph = adjacencies.foldLeft(DBSCANGraph[ClusterId]()) {
       case (graph, (from, to)) => graph.connect(from, to)
     }
+
     //找到所有类簇的id——(partitionID，clusterID)
     val localClusterIds =
       clustered
-        .filter({ case (_, point) => point.getFlag != KDBSCANPoint.Flag.Noise })
+        .filter({ case (_, point) => point.getCluster != 0 })
         .mapValues(_.getCluster)
         .distinct()
         .collect()
@@ -154,14 +163,13 @@ object KD_DBSCAN_v2 {
     }
 
     val clusterIds = points.context.broadcast(clusterIdToGlobalId)
-
     // reable points
     val labeledMain =
       clustered
         .filter(isMainPoint(_, margins.value))
         .map {
           case (partition, point) => {
-            if (point.getFlag != KDBSCANPoint.Flag.Noise) {
+            if (point.getCluster != 0) {
               point.setCluster(clusterIds.value((partition, point.getCluster)))
             }
             (partition, point)
@@ -192,7 +200,7 @@ object KD_DBSCAN_v2 {
     val (seen, adjacencies) = partition.foldLeft(zero)({
       case ((seen, adjacencies), (partition, point)) =>
         // noise points are not relevant for adjacencies
-        if (point.getFlag ==KDBSCANPoint.Flag.Noise) {
+        if (point.getCluster == 0) {
           (seen, adjacencies)
         } else {
           val clusterId = (partition, point.getCluster) //当前点拼成(partitionID,clusterID)的形式

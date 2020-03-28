@@ -18,7 +18,7 @@ object DBSCAN {
     //使用测试数据
     //    val lines=sc.textFile("D:/kdsg/in/origin.csv")
     //使用湖北数据
-    val lines=sc.textFile("D:/kdsg/in/hubei.csv")
+    val lines=sc.textFile("D:/kdsg/in/origin.csv")
 
     val points=lines.map{line=>
       val parts=Vectors.dense(line.split(",").map(_.toDouble))
@@ -26,18 +26,18 @@ object DBSCAN {
       dbscanpoint
     }
 
-    val samplePoints=points.sample(false,0.93) //0.06 0.3 0.63 0.93
+    val samplePoints=points.sample(false,1) //0.06 0.3 0.63 0.93
 
     println(samplePoints.collect().length)
     //对原始数据进行采样
     val samplePointsToIterable=samplePoints.collect().toIterable
     println("聚类开始："+System.currentTimeMillis())
     //使用原始DBSCAN方法生成结果
-    val samplePoints_native=new DBSCANNaive(0.001,25).fit(samplePointsToIterable)
+    val samplePoints_native=new DBSCANNaive(10,15).fit(samplePointsToIterable)
 
     val samplePointsRDD_native=sc.parallelize(samplePoints_native.toList)
     println("聚类结束："+System.currentTimeMillis())
-    samplePointsRDD_native.saveAsTextFile("D:/kdsg/out/191226/hubei_DBSCAN_十五万")
+    samplePointsRDD_native.saveAsTextFile("D:/kdsg/out/020307/dbscan")
   }
 
   /**

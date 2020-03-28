@@ -3,7 +3,7 @@ package org.zzy.dbscan.java.index.balanced_KDTree;
 import java.io.Serializable;
 
 public class KDBSCANPoint implements Serializable {
-    private Integer id;
+    private int id;
     private double[] value;
     private boolean visited=false;
     private int cluster=0;
@@ -15,11 +15,11 @@ public class KDBSCANPoint implements Serializable {
     public KDBSCANPoint() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -59,4 +59,5 @@ public class KDBSCANPoint implements Serializable {
     public String toString() {
         return value[0] +"," + value[1] +"," + cluster;
     }
+
 }
