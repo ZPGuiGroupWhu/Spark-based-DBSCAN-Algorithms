@@ -7,9 +7,10 @@ import org.zzy.dbscan.scala.utils.DBSCANLabeledPoint.Flag
 import org.zzy.dbscan.scala.utils.{DBSCANLabeledPoint, DBSCANPoint}
 
 import scala.collection.mutable.Queue
+//经典DBSCAN算法
 object DBSCAN {
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.home.dir","D:/kdsg/")//本地缺少hadoop环境，所以要加上
+    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
     val conf=new SparkConf()
     conf.setAppName("dbscan_native")
     conf.setMaster("local[1]")
@@ -18,7 +19,7 @@ object DBSCAN {
     //使用测试数据
     //    val lines=sc.textFile("D:/kdsg/in/origin.csv")
     //使用湖北数据
-    val lines=sc.textFile("D:/kdsg/in/origin.csv")
+    val lines=sc.textFile("C:/Users/ASUS/Desktop/test.csv")
 
     val points=lines.map{line=>
       val parts=Vectors.dense(line.split(",").map(_.toDouble))
@@ -33,11 +34,11 @@ object DBSCAN {
     val samplePointsToIterable=samplePoints.collect().toIterable
     println("聚类开始："+System.currentTimeMillis())
     //使用原始DBSCAN方法生成结果
-    val samplePoints_native=new DBSCANNaive(10,15).fit(samplePointsToIterable)
+    val samplePoints_native=new DBSCANNaive(20,10).fit(samplePointsToIterable)
 
     val samplePointsRDD_native=sc.parallelize(samplePoints_native.toList)
     println("聚类结束："+System.currentTimeMillis())
-    samplePointsRDD_native.saveAsTextFile("D:/kdsg/out/020307/dbscan")
+    samplePointsRDD_native.saveAsTextFile("C:/Users/ASUS/Desktop/dbscan/4")
   }
 
   /**

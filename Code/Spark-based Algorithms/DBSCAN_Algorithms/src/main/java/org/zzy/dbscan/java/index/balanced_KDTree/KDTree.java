@@ -243,7 +243,7 @@ public class KDTree implements Serializable {
      * @param input 输入
      * @return KDTree树
      */
-    public static KDTree build(List<KDBSCANPoint> input,List<KDBSCANPoint> MBRinput){
+    public static KDTree build(List<KDBSCANPoint> input){
         int n = input.size();//数据条数
         int m=input.get(0).getValue().length;//维度
         ArrayList<double[]> data =new ArrayList<double[]>(n);
@@ -254,18 +254,8 @@ public class KDTree implements Serializable {
             data.add(d);
         }
 
-        int n2 = MBRinput.size();//数据条数
-        int m2=MBRinput.get(0).getValue().length;//维度
-        ArrayList<double[]> MBR =new ArrayList<double[]>(n);
-        for(int i=0;i<n2;i++){
-            double[] d = new double[m2];
-            for(int j=0;j<m2;j++)
-                d[j]=MBRinput.get(i).getValue()[j];
-            MBR.add(d);
-        }
-
         //原始数据每一维度的最小最大值maxmin(0)表示所有维度最小值数组，maxmin(1)表示所有维度最大值数组
-        double[][] maxmin= UtilZ.maxmin(MBR, m2);
+        double[][] maxmin= UtilZ.maxmin(data, m);
 
         DBSCANRectangle rectangle_kd=new DBSCANRectangle(maxmin[0][0],maxmin[0][1],maxmin[1][0],maxmin[1][1]);
         KDTree tree = new KDTree();

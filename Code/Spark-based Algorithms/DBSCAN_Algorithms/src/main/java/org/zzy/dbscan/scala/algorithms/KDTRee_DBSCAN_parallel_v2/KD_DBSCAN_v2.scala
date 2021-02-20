@@ -66,7 +66,7 @@ object KD_DBSCAN_v2 {
 //    println("生成采样点之后时间："+System.currentTimeMillis())
 
     //获取分区矩形，求取全部数据的MBR作为分区矩形外边界
-    val rectangleList=KDTree.build(samplePoints.toLocalIterator.toList.asJava,originPoints.toLocalIterator.toList.asJava).getRectangle(numPartition).asScala.toList
+    val rectangleList=KDTree.build(samplePoints.toLocalIterator.toList.asJava).getRectangle(numPartition).asScala.toList
 //    println("获取分区矩形时间："+System.currentTimeMillis())
 
     //生成内中外矩形

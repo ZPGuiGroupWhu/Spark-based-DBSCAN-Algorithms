@@ -9,12 +9,12 @@ import scala.collection.mutable
 
 object DBSCAN_KDTree {
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.home.dir","D:/kdsg/")
+    System.setProperty("hadoop.home.dir","D:/KDBSCAN/Spark-based-DBSCAN-Algorithms/Code/Spark-based Algorithms/")
     val conf=new SparkConf()
     conf.setAppName("dbscan_kdtree")
     conf.setMaster("local[*]")
     val sc= new SparkContext(conf)
-    val data_hubei=sc.textFile("D:/kdsg/in/hubei.csv")
+    val data_hubei=sc.textFile("D:/KDBSCAN/in/cluto-t7-10k.csv")
     val points_hubei=data_hubei.map(line=>{
       val parts=line.split(",")
       val pid=parts(0).toLong
@@ -23,22 +23,23 @@ object DBSCAN_KDTree {
       geoPoint.setValue(coord)
       (pid,geoPoint)  //传入键值对的形式，系统会进行默认的hash分区
     })
-    val iterablePoints_hubei=points_hubei.sample(false,0.1)
-    val labeledPoints_hubei_kdtree=new KDBSCAN(iterablePoints_hubei.values.collect().toIterable,0.001,25).fit()
+    val iterablePoints_hubei=points_hubei.sample(false,1)
+    val labeledPoints_hubei_kdtree=new KDBSCAN(iterablePoints_hubei.values.collect().toIterable,10,15).fit()
     val labeledPointsRDD_hubei_kdtree=sc.parallelize(labeledPoints_hubei_kdtree.toList)
-    labeledPointsRDD_hubei_kdtree.repartition(1).saveAsTextFile("D:/kdsg/out/191217_kdbscan1/hubei_full_KDTree1")
+    labeledPointsRDD_hubei_kdtree.foreach(println)
+    println(labeledPointsRDD_hubei_kdtree.collect().length)
+    labeledPointsRDD_hubei_kdtree.repartition(1).saveAsTextFile("D:/KDBSCAN/out/kdbscan_cluto_10_15")
   }
   class KDBSCAN(points:Iterable[KDBSCANPoint],eps: Double,minPoints:Int)extends Serializable {
     protected final val logger_kdbscan=LoggerFactory.getLogger(this.getClass)
     logger_kdbscan.info(s"About to start fitting")
 
 //    println("建树前："+System.currentTimeMillis())
-    val kdtreePoints=KDTree.build(points.toList.asJava,points.toList.asJava)
+    val kdtreePoints=KDTree.build(points.toList.asJava)
 //    println("建树后："+System.currentTimeMillis())
 
     def fit():Iterable[KDBSCANPoint] ={
       val labeledPoints=kdtreePoints.getNodes.asScala.toArray
-
       val rectangleKD=kdtreePoints.getRectangle(4).asScala.toArray
 
 //      println("本地聚类前："+System.currentTimeMillis())

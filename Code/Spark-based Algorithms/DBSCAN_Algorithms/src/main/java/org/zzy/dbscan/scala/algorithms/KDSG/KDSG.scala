@@ -14,7 +14,7 @@ import scala.collection.JavaConverters._
   */
 object KDSG{
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.home.dir","D:/kdsg/")
+    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")
     /**
       * 完整定义一个函数为：
       * def 函数名（参数：参数类型，参数：参数类型）: 返回值类型={
@@ -41,9 +41,9 @@ object KDSG{
 //    val master = args(0)
     val master="local[*]"
 //    val fname = args(1)
-    val fname="D:/kdsg/in/origin.csv"
+    val fname="D:/KDBSCAN/in/cluto-t7-10k.csv"
 //    val outpath = args(2)
-    val outpath="D:/kdsg/out/200314/kdsg"
+    val outpath="D:/KDBSCAN/out/cluto-t7-10k_2"
 //    val epsilon = args(3)
     val epsilon="10"
 //    val minPts = args(4).toInt
