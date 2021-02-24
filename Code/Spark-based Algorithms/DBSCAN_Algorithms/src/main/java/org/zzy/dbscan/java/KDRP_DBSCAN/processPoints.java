@@ -27,13 +27,12 @@ public class processPoints implements Serializable {
 //            mc.setReachList(reachList);
         }
         processRemPoints(MCList,mukdtree,eps,minpoints);
-        UnionFindPoints unionFindPoints=new UnionFindPoints(points);
-
-
+//        UnionFindPoints unionFindPoints=new UnionFindPoints(points);
         postProcessCore(mukdtree,eps);
         postProcessNoise(eps);
         return points;
     }
+
 
 
     //KD树结构由外面传进来
@@ -261,7 +260,7 @@ public class processPoints implements Serializable {
             MC mc=mcList.get(i);//获取微类簇
             for(int j=0;j<mc.getInPoints().size();j++){//获取内部点
                 if(!mc.getInPoints().get(j).getFlag().equals(Point.Flag.Core)){
-                    List<Point>list=new ArrayList<>();
+                    List<Point>list=new ArrayList<>();//邻域点列表
                     findNBHD(mc,kdTree,mc.getInPoints().get(j),Eps,MinPts,list);
                     if(list.size()<MinPts){
                         for(Point point:list){
@@ -275,8 +274,8 @@ public class processPoints implements Serializable {
                     }else {
                         mc.getInPoints().get(j).setFlag(Point.Flag.Core);
                         for(Point point:list){
-                            if(point.getFlag().equals(Point.Flag.Core))Union(point,list.get(j));
-                            else if(point.getCluster()==0)Union(point,list.get(j));
+                            if(point.getFlag().equals(Point.Flag.Core))Union(mc.getInPoints().get(j),point);
+                            else if(point.getCluster()==0)Union(mc.getInPoints().get(j),point);
                         }
                     }
                 }
@@ -297,8 +296,8 @@ public class processPoints implements Serializable {
                     }else {
                         mc.getOutPoints().get(k).setFlag(Point.Flag.Core);
                         for(Point point:list){
-                            if(point.getFlag().equals(Point.Flag.Core))Union(point,list.get(k));
-                            else if(point.getCluster()==0)Union(point,list.get(k));
+                            if(point.getFlag().equals(Point.Flag.Core))Union(mc.getOutPoints().get(k),point);
+                            else if(point.getCluster()==0)Union(mc.getOutPoints().get(k),point);
                         }
                     }
                 }

@@ -86,7 +86,6 @@ object KD_DBSCAN extends Serializable {
 //    println("进行数据分区之后时间："+System.currentTimeMillis())
 
     val numOfPartitions=rectangleList.size
-
 //    println("本地聚类之前时间："+System.currentTimeMillis())
     //本地聚类
     val clustered =
