@@ -11,26 +11,35 @@ import scala.collection.JavaConverters._
 object KDRP_DBSCAN {
   def main(args:Array[String]):Unit={
     //本地模式
-    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
-    val master="local[*]"
-//    val eps="3".toDouble
-//    val minpts="2".toInt
-//    val inPath="D:/KDBSCAN/in/test2.csv"
-//    val outPath="D:/KDBSCAN/out/test"
-    val eps="10".toDouble
-    val minpts="15".toInt
-    val inPath="D:/KDBSCAN/in/cluto-t7-10k.csv"
-    val outPath="D:/KDBSCAN/out/cluto-t7-10k_22222"
-    val numOfPartitions="1".toInt//节点数
+//    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
+//    val master="local[5]"
+////    val eps="3".toDouble
+////    val minpts="2".toInt
+////    val inPath="D:/KDBSCAN/in/test2.csv"
+////    val outPath="D:/KDBSCAN/out/test"
+//    val eps="10".toDouble
+//    val minpts="15".toInt
+//    val inPath="D:/KDBSCAN/in/cluto-t7-10k.csv"
+//    val outPath="D:/KDBSCAN/out/cluto-t7-10k_KD树并行构建_5个分区"
+////    val eps="10".toDouble
+////    val minpts="15".toInt
+////    val inPath="D:/KDBSCAN/in/zzzz.csv"
+////    val outPath="D:/KDBSCAN/out/zzzz"
+//    val numOfPartitions="5".toInt//worker数
+//    val conf=new SparkConf()
+//    conf.setAppName("KDRP-DBSCAN")
+//      .setMaster(master)
+
+    //集群模式
+    val master=args(0)
+    val eps=args(1).toDouble
+    val minpts=args(2).toInt
+    val inPath=args(3)
+    val outPath=args(4)
+    val numOfPartitions=args(5).toInt
     val conf=new SparkConf()
     conf.setAppName("KDRP-DBSCAN")
       .setMaster(master)
-    //集群模式
-//    val master=args(0)
-//    val eps=args(1).toDouble
-//    val minPts=args(2).toInt
-//    val inPath=args(3)
-//    val outPath=args(4)
 //    val conf=new SparkConf()
 //    conf.setAppName("KDRP-DBSCAN")
 //      .setMaster(master)
@@ -53,11 +62,11 @@ object KDRP_DBSCAN {
     val MCList=new process.KDRP_DBSCAN().buildMCs(points.values,eps,minpts,numOfPartitions,broadcastPointKDTree.value)
     //数据分区
     val MCs=sc.parallelize(MCList)
-    
     val partitionedMCs=MCs.map{mc=>
       val partitionID=scala.util.Random.nextInt(numOfPartitions)
       (partitionID,mc)
     }
+
     //构建第二层KD树
     val MCsProcessing=partitionedMCs
       .groupByKey(numOfPartitions)
@@ -65,12 +74,12 @@ object KDRP_DBSCAN {
         new process.KDRP_DBSCAN().buildAuxKDTree(mcs)
       })
     val MCListFinal=MCsProcessing.values.collect().toList
+    val MCListFinalSorted=MCListFinal.sortBy(_.getId)//排序是因为MCListFinal得到的List[MC]列表顺序与MC的id不对应了
     //分区内识别核心点
     val clustered=MCsProcessing
       .groupByKey(numOfPartitions)
       .flatMapValues(mcs=>{
-        val ccccc=broadcastPointKDTree.value
-        new process.KDRP_DBSCAN().processMicroClusters(mcs,eps,minpts,broadcastPointKDTree.value,MCListFinal)
+        new process.KDRP_DBSCAN().processMicroClusters(mcs,eps,minpts,broadcastPointKDTree.value,MCListFinalSorted)
       })
     val ssssssss=clustered.values.map(mc=>{
       val listIn=mc.getInPoints.asScala.toList
@@ -82,9 +91,10 @@ object KDRP_DBSCAN {
     val pointsFromMCsRDD=sc.parallelize(pointsFromMCs)
 
     println("------------------------------------")
+
     //图联通
     val edges=pointsFromMCsRDD.filter( _.getFlag.equals(Point.Flag.Core)).map(p=>{
-      val list=new process.KDRP_DBSCAN().findNBPoints(p,eps,minpts,broadcastPointKDTree.value,MCListFinal)
+      val list=new process.KDRP_DBSCAN().findNBPoints(p,eps,minpts,broadcastPointKDTree.value,MCListFinalSorted)
       (p,list)
     }).flatMap(coreRange => {
       for (p <- coreRange._2) yield Edge(coreRange._1.getId, p.getId, coreRange._1)//Edge——单一有向边
