@@ -17,9 +17,9 @@ object DBSCAN {
     //    conf.set("spark.executor.memory","12g")
     val sc=new SparkContext(conf)
     //使用测试数据
-        val lines=sc.textFile("D:/KDBSCAN/in/cluto-t7-10k.csv")
+    //    val lines=sc.textFile("D:/kdsg/in/origin.csv")
     //使用湖北数据
-//    val lines=sc.textFile("C:/Users/ASUS/Desktop/test.csv")
+    val lines=sc.textFile("C:/Users/ASUS/Desktop/test.csv")
 
     val points=lines.map{line=>
       val parts=Vectors.dense(line.split(",").map(_.toDouble))
@@ -34,11 +34,11 @@ object DBSCAN {
     val samplePointsToIterable=samplePoints.collect().toIterable
     println("聚类开始："+System.currentTimeMillis())
     //使用原始DBSCAN方法生成结果
-    val samplePoints_native=new DBSCANNaive(10,15).fit(samplePointsToIterable)
+    val samplePoints_native=new DBSCANNaive(20,10).fit(samplePointsToIterable)
 
     val samplePointsRDD_native=sc.parallelize(samplePoints_native.toList)
     println("聚类结束："+System.currentTimeMillis())
-    samplePointsRDD_native.saveAsTextFile("D:/KDBSCAN/out/cluto-t7-10k_原始DBSCAN")
+    samplePointsRDD_native.saveAsTextFile("C:/Users/ASUS/Desktop/dbscan/4")
   }
 
   /**

@@ -1,6 +1,9 @@
 package org.zzy.dbscan.java.index.balanced_KDTree;
 
 
+import org.zzy.dbscan.java.kdrp.MCluster;
+import org.zzy.dbscan.java.model.MC;
+
 import java.io.Serializable;
 
 public class Node implements Serializable {
@@ -23,6 +26,16 @@ public class Node implements Serializable {
     private double[] max;
     //每个节点对应的矩形区域
     private DBSCANRectangle rectangle;
+
+    private MCluster mCluster;
+
+    public MCluster getmCluster() {
+        return mCluster;
+    }
+
+    public void setmCluster(MCluster mCluster) {
+        this.mCluster = mCluster;
+    }
 
     public long getLeval() {
         return leval;

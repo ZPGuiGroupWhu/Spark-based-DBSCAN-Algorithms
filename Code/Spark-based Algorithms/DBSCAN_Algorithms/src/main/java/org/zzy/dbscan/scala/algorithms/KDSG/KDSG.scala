@@ -39,7 +39,7 @@ object KDSG{
       */
 
 //    val master = args(0)
-    val master="local[5]"
+    val master="local[*]"
 //    val fname = args(1)
     val fname="D:/KDBSCAN/in/cluto-t7-10k.csv"
 //    val outpath = args(2)

@@ -1,5 +1,7 @@
 package org.zzy.dbscan.java.index.balanced_KDTree;
 
+import org.zzy.dbscan.java.kdrp.MCluster;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -237,7 +239,7 @@ public class KDTree implements Serializable {
 
     }
 
-    private KDTree() {}
+    public KDTree() {}
     /**
      * 构建树
      * @param input 输入
@@ -256,7 +258,7 @@ public class KDTree implements Serializable {
 
         //原始数据每一维度的最小最大值maxmin(0)表示所有维度最小值数组，maxmin(1)表示所有维度最大值数组
         double[][] maxmin= UtilZ.maxmin(data, m);
-
+        //这个地方后期可以优化，传进来的直接就是整个数据集的MBR
         DBSCANRectangle rectangle_kd=new DBSCANRectangle(maxmin[0][0],maxmin[0][1],maxmin[1][0],maxmin[1][1]);
         KDTree tree = new KDTree();
         tree.kdtree = new Node();

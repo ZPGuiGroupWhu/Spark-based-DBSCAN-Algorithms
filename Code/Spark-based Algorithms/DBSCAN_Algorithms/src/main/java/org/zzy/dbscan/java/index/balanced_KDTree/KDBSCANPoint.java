@@ -4,6 +4,16 @@ import java.io.Serializable;
 
 public class KDBSCANPoint implements Serializable {
     private int id;
+//    private int MCID;
+//
+//    public int getMCID() {
+//        return MCID;
+//    }
+//
+//    public void setMCID(int MCID) {
+//        this.MCID = MCID;
+//    }
+
     private double[] value;
     private boolean visited=false;
     private int cluster=0;
@@ -13,6 +23,9 @@ public class KDBSCANPoint implements Serializable {
     }
 
     public KDBSCANPoint() {
+    }
+    public KDBSCANPoint(double[] coord){
+        this.value=coord;
     }
 
     public int getId() {
@@ -54,6 +67,12 @@ public class KDBSCANPoint implements Serializable {
     public void setFlag(Flag flag) {
         this.flag = flag;
     }
+
+    public double getDist(KDBSCANPoint p){
+        double dis=Math.sqrt(Math.pow((this.value[0]-p.value[0]), 2)+Math.pow((this.value[1]-p.value[1]), 2));
+        return dis;
+    }
+
 
     @Override
     public String toString() {

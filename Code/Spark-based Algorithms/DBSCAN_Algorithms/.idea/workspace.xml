@@ -41,13 +41,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP_DBSCAN.scala">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/kdrpdbscan.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+            <state relative-caret-position="1047">
+              <caret line="212" column="9" lean-forward="true" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="9" />
               <folding>
-                <element signature="e#53#107#0" expanded="true" />
+                <element signature="e#53#94#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+              <folding>
+                <element signature="e#53#69#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -56,10 +68,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/process.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+            <state relative-caret-position="279">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
               <folding>
-                <element signature="e#53#84#0" expanded="true" />
+                <element signature="e#53#69#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="717">
+              <caret line="147" column="18" lean-forward="true" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
+              <folding>
+                <element signature="method#findNBPoints#0;class#process#0" />
+                <element signature="method#processPoint#1;class#process#0" />
               </folding>
             </state>
           </provider>
@@ -68,62 +93,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/MC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            <state relative-caret-position="270">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#460#461#0" expanded="true" />
-                <element signature="e#492#493#0" expanded="true" />
-                <element signature="e#817#818#0" expanded="true" />
-                <element signature="e#848#849#0" expanded="true" />
-                <element signature="e#1339#1340#0" expanded="true" />
-                <element signature="e#1371#1372#0" expanded="true" />
-                <element signature="e#1497#1498#0" expanded="true" />
-                <element signature="e#1522#1523#0" expanded="true" />
-                <element signature="e#1555#1556#0" expanded="true" />
-                <element signature="e#1583#1584#0" expanded="true" />
-                <element signature="e#1618#1619#0" expanded="true" />
-                <element signature="e#1647#1648#0" expanded="true" />
-                <element signature="e#1693#1694#0" expanded="true" />
-                <element signature="e#1729#1730#0" expanded="true" />
+                <element signature="e#850#851#0" expanded="true" />
+                <element signature="e#882#883#0" expanded="true" />
+                <element signature="e#934#935#0" expanded="true" />
+                <element signature="e#999#1000#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/Point.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDBSCANPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="420">
+              <caret line="14" column="7" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="14" selection-end-column="7" />
               <folding>
-                <element signature="e#206#207#0" expanded="true" />
-                <element signature="e#243#244#0" expanded="true" />
-                <element signature="e#275#276#0" expanded="true" />
-                <element signature="e#533#534#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#591#592#0" expanded="true" />
-                <element signature="e#616#617#0" expanded="true" />
-                <element signature="e#711#712#0" expanded="true" />
-                <element signature="e#739#740#0" expanded="true" />
-                <element signature="e#997#998#0" expanded="true" />
-                <element signature="e#1027#1028#0" expanded="true" />
-                <element signature="e#1070#1071#0" expanded="true" />
-                <element signature="e#1108#1109#0" expanded="true" />
-                <element signature="e#1137#1138#0" expanded="true" />
-                <element signature="e#1164#1165#0" expanded="true" />
-                <element signature="e#1202#1203#0" expanded="true" />
-                <element signature="e#1234#1235#0" expanded="true" />
+                <element signature="e#570#571#0" expanded="true" />
+                <element signature="e#602#603#0" expanded="true" />
+                <element signature="e#748#749#0" expanded="true" />
+                <element signature="e#776#777#0" expanded="true" />
+                <element signature="e#888#889#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#965#966#0" expanded="true" />
+                <element signature="e#1003#1004#0" expanded="true" />
+                <element signature="e#1107#1108#0" expanded="true" />
+                <element signature="e#1145#1146#0" expanded="true" />
+                <element signature="e#1239#1240#0" expanded="true" />
+                <element signature="e#1271#1272#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5610">
-              <caret line="194" selection-start-line="194" selection-end-line="194" />
             </state>
           </provider>
         </entry>
@@ -162,6 +163,8 @@
       <find>Union</find>
       <find>reachList</find>
       <find>wndqCorelist</find>
+      <find>processPoints</find>
+      <find>Point</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,8 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/partitionKDTree/DBSCANRectangle_KD.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/java/org/zzy/dbscan/partitionKDTree/DBSCAN_KDTree.scala" />
         <option value="$PROJECT_DIR$/src/main/java/java/org/zzy/dbscan/partitionKDTree/DBSCANRectangle.java" />
         <option value="$PROJECT_DIR$/src/main/java/java/org/zzy/dbscan/DBSCAN_final.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/partitionKDTree/Node.java" />
@@ -183,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/org/zzy/dbscan/utils/DBSCANPoint.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/utils/DBSCANPoint.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/DBSCANGraph.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/DBSCANRectangle.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/DBSCAN_final.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/scriptFile.scala" />
@@ -199,26 +199,31 @@
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/classical_KDTree/KDTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/classical_KDTree_v2/balanced_KDTree/KDTree_v2.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel_v2/KDBSCAN_local.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDBSCANPoint.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel_v2/KD_DBSCAN_v2.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/classical_KDTree/KDNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/buildMicroClusters.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/MC.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTree_DBSCAN/DBSCAN_KDTree.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/Point.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/UnionFindPoints.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/UnionFind.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/processPoints.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/process.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDSG/KDSG.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTree_DBSCAN/DBSCAN_KDTree.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/kdrp/MCluster.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP_DBSCAN.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/kdrp/kdrpJava.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/kdrpdbscan.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/process.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDBSCANPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/MC.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java" />
       </list>
     </option>
   </component>
@@ -240,11 +245,11 @@
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="kdbscan" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="kdbscan_change_kdrp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="kdbscan" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="kdbscan_change_kdrp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
           <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
       </expand>
@@ -265,43 +270,42 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dbscan" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -309,8 +313,8 @@
               <item name="scala" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="KDRP-DBSCAN" type="b2602c69:ProjectViewProjectNode" />
-              <item name="KDRP-DBSCAN" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
@@ -318,11 +322,23 @@
               <item name="scala" type="462c0819:PsiDirectoryNode" />
               <item name="algorithms" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="KDRP_DBSCAN_copy10_6" type="b2602c69:ProjectViewProjectNode" />
+              <item name="KDRP_DBSCAN_copy10_6" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dbscan" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="algorithms" type="462c0819:PsiDirectoryNode" />
+              <item name="KDRP_DBSCAN" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,7 +347,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1585327477795" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../备份/KDRP-DBSCAN——2.24版本一，双层KD树串行构建" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Global Libraries" />
@@ -341,11 +357,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.zzy.dbscan.scala.algorithms.KDRP_DBSCAN" />
+      <recent name="org.zzy.dbscan.java.kdrp" />
       <recent name="org.zzy.dbscan.java.KDRP_DBSCAN" />
       <recent name="org.zzy.dbscan.java.model" />
       <recent name="org.zzy.dbscan.scala.algorithms.RTree_DBSCAN" />
-      <recent name="org.zzy.dbscan.scala.algorithms" />
-      <recent name="org.zzy.dbscan" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Spark-based-DBSCAN-Algorithms\Spark-based-DBSCAN-Algorithms\Code\Spark-based Algorithms\DBSCAN_Algorithms\src\main\java\org\zzy\dbscan\java\index\classical_KDTree_v2" />
@@ -367,13 +383,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.KDRP_DBSCAN">
-    <configuration name="DBSCAN" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.zzy.dbscan.scala.algorithms.DBSCAN.DBSCAN" />
+  <component name="RunManager" selected="Application.KDRP">
+    <configuration name="KDRP" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.zzy.dbscan.scala.algorithms.KDRP_DBSCAN.KDRP" />
       <module name="zzy" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.zzy.dbscan.scala.algorithms.DBSCAN.*" />
+          <option name="PATTERN" value="org.zzy.dbscan.scala.algorithms.KDRP_DBSCAN.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -434,18 +450,18 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DBSCAN" />
       <item itemvalue="Application.KD_DBSCAN" />
       <item itemvalue="Application.KDRP_DBSCAN" />
       <item itemvalue="Application.KDSG" />
       <item itemvalue="Application.UnionFind" />
+      <item itemvalue="Application.KDRP" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.KDRP" />
         <item itemvalue="Application.KDRP_DBSCAN" />
-        <item itemvalue="Application.KDSG" />
-        <item itemvalue="Application.DBSCAN" />
         <item itemvalue="Application.UnionFind" />
+        <item itemvalue="Application.KDSG" />
         <item itemvalue="Application.KD_DBSCAN" />
       </list>
     </recent_temporary>
@@ -509,19 +525,28 @@
       <workItem from="1613823720827" duration="8562000" />
       <workItem from="1613999097367" duration="20201000" />
       <workItem from="1614056686633" duration="17107000" />
-      <workItem from="1614165870048" duration="1355000" />
-      <workItem from="1614168151916" duration="4398000" />
-      <workItem from="1614174905216" duration="2719000" />
-      <workItem from="1614217182843" duration="17118000" />
-      <workItem from="1614325502281" duration="77000" />
-      <workItem from="1614325758451" duration="618000" />
-      <workItem from="1614391838367" duration="1955000" />
-      <workItem from="1614563588536" duration="1140000" />
+      <workItem from="1614134882152" duration="15630000" />
+      <workItem from="1614177028896" duration="930000" />
+      <workItem from="1614241458509" duration="228000" />
+      <workItem from="1614668581569" duration="708000" />
+      <workItem from="1614669676452" duration="1862000" />
+      <workItem from="1614780229891" duration="1442000" />
+      <workItem from="1614910135360" duration="11738000" />
+      <workItem from="1615007946637" duration="12707000" />
+      <workItem from="1615462641712" duration="12000" />
+      <workItem from="1615462739984" duration="4082000" />
+      <workItem from="1615468670348" duration="2927000" />
+      <workItem from="1615510057721" duration="10233000" />
+      <workItem from="1615524724078" duration="4905000" />
+      <workItem from="1615531347808" duration="16754000" />
+      <workItem from="1615552707321" duration="11000" />
+      <workItem from="1615552795977" duration="1515000" />
+      <workItem from="1615601797165" duration="986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="439816000" />
+    <option name="totallyTimeSpent" value="497106000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,7 +561,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23726542" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2533512" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -545,8 +570,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932525" weight="0.6152758" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6605375" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932525" weight="0.4950495" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.44413012" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.49932525" weight="0.3281471" />
@@ -572,7 +597,7 @@
       <window_info anchor="right" id="CDI" order="12" weight="0.3297587" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23391421" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2533512" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -581,8 +606,8 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932525" weight="0.6152758" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6605375" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49932525" weight="0.4950495" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.44413012" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Terminal" order="6" sideWeight="0.49932525" weight="0.3281471" />
@@ -617,34 +642,6 @@
     </ignored-roots>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/processPoints.java</url>
-          <line>29</line>
-          <properties />
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/processPoints.java</url>
-          <line>299</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java</url>
-          <line>194</line>
-          <properties />
-          <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP_DBSCAN.scala</url>
-          <line>92</line>
-          <properties />
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="MCList.get(0)" />
@@ -652,8 +649,8 @@
         <watch expression="mukdtree.root.right" />
         <watch expression="mukdtree.root.left" />
         <watch expression="mukdtree.root.left" language="JAVA" />
-        <watch expression="((scala.Tuple2[])ffffff)[1]" custom="scala.Tuple2[]" />
-        <watch expression="pointsFromMCs" />
+        <watch expression="mcList.get(3).inPoints" />
+        <watch expression="MCList" />
       </configuration>
     </watches-manager>
   </component>
@@ -662,14 +659,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.6.5/jackson-core-2.6.5.jar!/com/fasterxml/jackson/core/json/WriterBasedJsonGenerator.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.6.5/jackson-core-2.6.5.jar!/com/fasterxml/jackson/core/base/GeneratorBase.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.jar!/com/fasterxml/jackson/databind/ser/std/StringSerializer.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.jar!/com/fasterxml/jackson/databind/ser/BeanPropertyWriter.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.jar!/com/fasterxml/jackson/databind/ser/std/BeanSerializerBase.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.6.5/jackson-databind-2.6.5.jar!/com/fasterxml/jackson/databind/ser/BeanSerializer.class" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/rdd/RDD.scala" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.11.8/scala-library-2.11.8-sources.jar!/scala/collection/IndexedSeqOptimized.scala" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/merge/DBSCANGraph.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -687,73 +676,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/utils/DBSCANLabeledPoint.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/utils/DBSCANPoint.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="10" selection-start-line="10" selection-end-line="79" selection-end-column="19" />
-          <folding>
-            <element signature="n#dependencies#0;n#project#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDBSCANPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding>
-            <element signature="e#466#467#0" expanded="true" />
-            <element signature="e#494#495#0" expanded="true" />
-            <element signature="e#528#529#0" expanded="true" />
-            <element signature="e#556#557#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-            <element signature="e#954#955#0" expanded="true" />
-            <element signature="e#981#982#0" expanded="true" />
-            <element signature="e#1097#1098#0" expanded="true" />
-            <element signature="e#1159#1160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="245" column="25" selection-start-line="245" selection-start-column="25" selection-end-line="245" selection-end-column="25" />
-          <folding>
-            <element signature="class#UtilZ#0;class#KDTree#0" />
-            <element signature="method#finaMedian#0;class#KDTree#0" />
-            <element signature="method#finaMax#0;class#KDTree#0" />
-            <element signature="docComment;method#build#0;class#KDTree#0" />
-            <element signature="docComment;method#buildDetail#0;class#KDTree#0" />
-            <element signature="method#buildDetail#0;class#KDTree#0" />
-            <element signature="method#getRectangle#0;class#KDTree#0" />
-            <element signature="method#rangeSearch#0;class#KDTree#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/RTree_DBSCAN/RTree_DBSCAN.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="15" column="36" lean-forward="true" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-          <folding>
-            <element signature="e#54#95#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -764,23 +690,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/UnionFind.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/UnionFindPoints.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/UnionFind.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/UnionFindPoints.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/classical_KDTree/KDTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -831,13 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/rdd/RDDOperationScope.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="142" column="13" selection-start-line="142" selection-start-column="13" selection-end-line="142" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/executor/Executor.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -852,6 +756,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/TaskContextImpl.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/scheduler/Task.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -861,13 +772,6 @@
     </entry>
     <entry file="jar://D:/Maven/repository/org/apache/spark/spark-network-common_2.11/2.1.0/spark-network-common_2.11-2.1.0.jar!/org/apache/spark/network/util/JavaUtils.class">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/util/Utils.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="1074" column="4" selection-start-line="1074" selection-start-column="4" selection-end-line="1074" selection-end-column="4" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/SparkEnv.scala">
       <provider selected="true" editor-type-id="text-editor">
@@ -890,10 +794,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-graphx_2.11/2.1.0/spark-graphx_2.11-2.1.0-sources.jar!/org/apache/spark/graphx/Graph.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="490" column="72" lean-forward="true" selection-start-line="490" selection-start-column="25" selection-end-line="490" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Maven/repository/org/scala-lang/scala-library/2.11.7/scala-library-2.11.7-sources.jar!/scala/Option.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="112" column="6" selection-start-line="112" selection-start-column="6" selection-end-line="112" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/util/Utils.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="1268" column="6" selection-start-line="1268" selection-start-column="6" selection-end-line="1268" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/broadcast/TorrentBroadcast.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="207" column="6" selection-start-line="207" selection-start-column="6" selection-end-line="207" selection-end-column="6" />
+        <state relative-caret-position="104">
+          <caret line="206" column="4" selection-start-line="206" selection-start-column="4" selection-end-line="206" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -904,95 +829,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/processPoints.java">
+    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/InterruptibleIterator.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="112">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDNode.java">
+    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/rdd/RDDOperationScope.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="113" column="70" lean-forward="true" selection-start-line="113" selection-start-column="70" selection-end-line="113" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#281#282#0" expanded="true" />
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#374#375#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#674#675#0" expanded="true" />
-            <element signature="e#704#705#0" expanded="true" />
-            <element signature="e#751#752#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
-            <element signature="e#820#821#0" expanded="true" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#923#924#0" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#1005#1006#0" expanded="true" />
-            <element signature="e#1033#1034#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="228">
+          <caret line="104" column="7" selection-start-line="104" selection-start-column="7" selection-end-line="104" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/rdd/RDD.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="933" column="28" selection-start-line="933" selection-start-column="28" selection-end-line="933" selection-end-column="28" />
+        <state relative-caret-position="130">
+          <caret line="361" column="51" selection-start-line="361" selection-start-column="51" selection-end-line="361" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/InterruptibleIterator.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/Maven/repository/org/apache/spark/spark-core_2.11/2.1.0/spark-core_2.11-2.1.0-sources.jar!/org/apache/spark/TaskContextImpl.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="117" column="42" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="e#48#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/processPoints.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDSG/KDSG.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="42" column="25" lean-forward="true" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+        <state relative-caret-position="777">
+          <caret line="121" column="2" selection-start-line="121" selection-start-column="2" selection-end-line="121" selection-end-column="2" />
           <folding>
             <element signature="e#46#100#0" expanded="true" />
           </folding>
@@ -1001,26 +863,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTree_DBSCAN/DBSCAN_KDTree.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-976">
-          <caret line="16" column="64" lean-forward="true" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+        <state relative-caret-position="407">
+          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
           <folding>
             <element signature="e#55#104#0" expanded="true" />
+            <element signature="e#308#1419#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2310">
-          <caret line="94" column="54" selection-start-line="94" selection-start-column="54" selection-end-line="94" selection-end-column="54" />
+        <state relative-caret-position="240">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#720#721#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
+            <element signature="e#841#842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/kdrp/MCluster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#441#442#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#632#633#0" expanded="true" />
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#736#737#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/Point.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="240">
+          <caret line="26" selection-start-line="26" selection-end-line="28" selection-end-column="5" />
           <folding>
+            <element signature="e#179#180#0" expanded="true" />
             <element signature="e#206#207#0" expanded="true" />
             <element signature="e#243#244#0" expanded="true" />
             <element signature="e#275#276#0" expanded="true" />
@@ -1042,53 +934,183 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/kdrp/kdrpJava.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5610">
-          <caret line="194" selection-start-line="194" selection-end-line="194" />
+        <state relative-caret-position="267">
+          <caret line="14" column="22" selection-end-line="138" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/process.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/utils/DBSCANLabeledPoint.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+        <state relative-caret-position="90">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/RTree_DBSCAN/RTree_DBSCAN.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="122" column="44" lean-forward="true" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
           <folding>
-            <element signature="e#53#84#0" expanded="true" />
+            <element signature="e#54#95#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/DBSCAN/DBSCAN.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="119" column="31" selection-start-line="119" selection-start-column="31" selection-end-line="119" selection-end-column="31" />
+          <folding>
+            <element signature="e#48#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDTRee_DBSCAN_parallel/KD_DBSCAN.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="65" column="32" selection-start-line="65" selection-start-column="32" selection-end-line="65" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP_DBSCAN.scala" />
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding>
+            <element signature="n#dependencies#0;n#project#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+            <element signature="e#497#498#0" expanded="true" />
+            <element signature="e#524#525#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
+            <element signature="e#596#597#0" expanded="true" />
+            <element signature="e#628#629#0" expanded="true" />
+            <element signature="e#656#657#0" expanded="true" />
+            <element signature="e#919#920#0" expanded="true" />
+            <element signature="e#947#948#0" expanded="true" />
+            <element signature="e#1054#1055#0" expanded="true" />
+            <element signature="e#1079#1080#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/KDTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/DBSCANRectangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="261" column="48" selection-start-line="261" selection-start-column="48" selection-end-line="261" selection-end-column="48" />
+          <folding>
+            <element signature="class#UtilZ#0;class#KDTree#0" />
+            <element signature="method#finaMedian#0;class#KDTree#0" />
+            <element signature="method#finaMax#0;class#KDTree#0" />
+            <element signature="docComment;method#build#0;class#KDTree#0" />
+            <element signature="docComment;method#buildDetail#0;class#KDTree#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/kdrpdbscan.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1047">
+          <caret line="212" column="9" lean-forward="true" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="9" />
+          <folding>
+            <element signature="e#53#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/index/balanced_KDTree/KDBSCANPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="14" selection-end-column="7" />
+          <folding>
+            <element signature="e#570#571#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#748#749#0" expanded="true" />
+            <element signature="e#776#777#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#965#966#0" expanded="true" />
+            <element signature="e#1003#1004#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
+            <element signature="e#1145#1146#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/model/MC.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="270">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#460#461#0" expanded="true" />
-            <element signature="e#492#493#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="e#1339#1340#0" expanded="true" />
-            <element signature="e#1371#1372#0" expanded="true" />
-            <element signature="e#1497#1498#0" expanded="true" />
-            <element signature="e#1522#1523#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
-            <element signature="e#1583#1584#0" expanded="true" />
-            <element signature="e#1618#1619#0" expanded="true" />
-            <element signature="e#1647#1648#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
-            <element signature="e#1729#1730#0" expanded="true" />
+            <element signature="e#850#851#0" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+            <element signature="e#999#1000#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP_DBSCAN.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/KDRP.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="35" column="28" lean-forward="true" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
+        <state relative-caret-position="351">
+          <caret line="40" column="35" lean-forward="true" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
           <folding>
-            <element signature="e#53#107#0" expanded="true" />
+            <element signature="e#53#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDRP_DBSCAN/process.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+          <folding>
+            <element signature="e#53#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/java/KDRP_DBSCAN/process.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="147" column="18" lean-forward="true" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
+          <folding>
+            <element signature="method#findNBPoints#0;class#process#0" />
+            <element signature="method#processPoint#1;class#process#0" />
           </folding>
         </state>
       </provider>
