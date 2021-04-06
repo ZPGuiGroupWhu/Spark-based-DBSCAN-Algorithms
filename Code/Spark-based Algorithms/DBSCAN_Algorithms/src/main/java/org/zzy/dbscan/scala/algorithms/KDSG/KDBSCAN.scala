@@ -1,25 +1,43 @@
-package org.zzy.dbscan.scala.algorithms.KDRP_DBSCAN
-
-import java.util
+package org.zzy.dbscan.scala.algorithms.KDSG
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.slf4j.LoggerFactory
-import org.zzy.dbscan.java.KDRP_DBSCAN.process
+import org.zzy.dbscan.java.TLKD.process
+import org.zzy.dbscan.java.TLKDModel.KDTree
 import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint
-import org.zzy.dbscan.java.model.{KDTree, MC}
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
 
-object KDRP {
+object KDBSCAN {
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.home.dir","D:/KDBSCAN/Spark-based-DBSCAN-Algorithms/Code/Spark-based Algorithms/")
-    val conf=new SparkConf()
-    conf.setAppName("KDRP_LOCAL")
-    conf.setMaster("local[*]")
+        val master=args(0)
+        val eps=args(1).toDouble
+        val minpts=args(2).toInt
+        val inPath=args(3)
+        val outPath=args(4)
+        val sampleRate=args(5).toDouble
+        val conf=new SparkConf()
+        conf.setAppName("KDBSCAN")
+          .setMaster(master)
+          .set("spark.executor.cores",args(6))
+          .set("spark.cores.max",args(7))
+          .set("spark.executor.memory",args(8))
+
+//    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
+//    val master="local[*]"
+//    val eps="10".toDouble
+//    val minpts="15".toInt
+//    val inPath="D:/KDBSCAN/in/cluto-t7-10k.csv"
+//    val outPath="D:/KDBSCAN/out/cluto-t7-10k_210331"
+//    val sampleRate="1".toDouble
+//    val conf=new SparkConf()
+//    conf.setAppName("KDBSCAN")
+//      .setMaster(master)
+
     val sc= new SparkContext(conf)
-    val data_hubei=sc.textFile("D:/KDBSCAN/in/cluto-t7-10k.csv")
-    val points_hubei=data_hubei.map(line=>{
+    val data=sc.textFile(inPath)
+    val points=data.map(line=>{
       val parts=line.split(",")
       val pid=parts(0).toLong
       val coord=Array(parts(1).toDouble,parts(2).toDouble)
@@ -27,33 +45,25 @@ object KDRP {
       geoPoint.setValue(coord)
       (pid,geoPoint)  //传入键值对的形式，系统会进行默认的hash分区
     })
-    val iterablePoints_hubei=points_hubei.sample(false,1)
-    val labeledPoints_hubei_kdtree=new KDRP(iterablePoints_hubei.values.collect().toIterable,10,15).fit()
-    val labeledPointsRDD_hubei_kdtree=sc.parallelize(labeledPoints_hubei_kdtree.toList)
-    labeledPointsRDD_hubei_kdtree.repartition(1).saveAsTextFile("D:/KDBSCAN/out/KDRP_cluto_10_031301")
+    val iterablePoints=points.sample(false,sampleRate)
+    val t1=System.currentTimeMillis()
+    val labeledPoints_kdtree=new Clustering(iterablePoints.values.collect().toIterable,eps,minpts).fit()
+    val labeledPointsRDD_kdtree=sc.parallelize(labeledPoints_kdtree.toList)
+    val t2=System.currentTimeMillis()
+    labeledPointsRDD_kdtree.repartition(1).saveAsTextFile(outPath)
+    println("聚类时间："+(t2-t1)/1000+"秒")
+    sc.stop()
   }
-  class KDRP(points:Iterable[KDBSCANPoint],eps: Double,minPoints:Int)extends Serializable {
+  class Clustering(points:Iterable[KDBSCANPoint],eps: Double,minPoints:Int)extends Serializable {
     protected final val logger_kdbscan=LoggerFactory.getLogger(this.getClass)
-    logger_kdbscan.info(s"About to start fitting")
-
-//    val mClusterList = new util.ArrayList[MC]//之前是想基于MC进行分区，因此在建树的时候加上了，现在不需要了
     val kdTree=new KDTree[KDBSCANPoint](2)
-    new process.KDRP_DBSCAN().buildMCs(points,eps,minPoints,kdTree)
-    println("建树前："+System.currentTimeMillis())
-//    val kdtreePoints=KDTree.build(points.toList.asJava,mClusterList)
-//    println("建树后："+System.currentTimeMillis())
-
+    points.map(p=>kdTree.insertTree(p.getValue,p,null))
     def fit():Iterable[KDBSCANPoint] ={
-//      val labeledPoints=kdtreePoints.getNodes.asScala.toArray
-
-      val labeledPoints=new process().nonRecOrder(kdTree.root).asScala.toArray
-//      val rectangleKD=kdtreePoints.getRectangle(4).asScala.toArray
-//      println("本地聚类前："+System.currentTimeMillis())
-
+      val labeledPoints=new process().nonRecOrderTemp(kdTree.root).asScala.toArray
       val totalClusters=labeledPoints.foldLeft(0)((cluster,point)=>{
         if (!point.isVisited) { //点没有访问则继续往下
           point.setVisited(true)
-          val neighbors = kdTree.reachableMCSearch(point.getValue,2*eps).asScala
+          val neighbors = kdTree.rangeSearch(point.getValue,eps).asScala
           if (neighbors.size < minPoints) {
             point.setFlag(KDBSCANPoint.Flag.Noise)
             cluster //不产生新的类簇
@@ -65,8 +75,6 @@ object KDRP {
           cluster
         }
       })
-//      println("本地聚类结束："+System.currentTimeMillis())
-
       logger_kdbscan.info(s"found: $totalClusters clusters")
       labeledPoints //返回最终的结果，类簇记号都改变了
     }
@@ -86,7 +94,7 @@ object KDRP {
           if (!neighbor.isVisited) {//如果点没有访问过
             neighbor.setVisited(true)
             neighbor.setCluster(cluster)
-            val neighborNeighbors = kdTree.reachableMCSearch(neighbor.getValue,2*eps).asScala
+            val neighborNeighbors = kdTree.rangeSearch(neighbor.getValue,eps).asScala
             if (neighborNeighbors.size >= minPoints) {
               neighbor.setFlag(KDBSCANPoint.Flag.Core)
               // 将neighborNeighbors加入队列

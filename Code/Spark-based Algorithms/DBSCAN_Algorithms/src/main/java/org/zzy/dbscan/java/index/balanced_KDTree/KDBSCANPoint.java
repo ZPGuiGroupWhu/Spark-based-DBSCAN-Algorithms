@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class KDBSCANPoint implements Serializable {
     private int id;
+    private int gridIndexID;
 //    private int MCID;
 //
 //    public int getMCID() {
@@ -20,6 +21,14 @@ public class KDBSCANPoint implements Serializable {
     private Flag flag= Flag.NotFlagged;
     public enum Flag{
         Border,Core,Noise,NotFlagged
+    }
+
+    public int getGridIndexID() {
+        return gridIndexID;
+    }
+
+    public void setGridIndexID(int gridIndexID) {
+        this.gridIndexID = gridIndexID;
     }
 
     public KDBSCANPoint() {

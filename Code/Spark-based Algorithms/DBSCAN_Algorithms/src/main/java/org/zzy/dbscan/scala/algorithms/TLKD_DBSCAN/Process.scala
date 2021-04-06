@@ -1,16 +1,17 @@
-package org.zzy.dbscan.scala.algorithms.KDRP_DBSCAN
+package org.zzy.dbscan.scala.algorithms.TLKD_DBSCAN
 
 import java.util
 
+import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.graphx.Edge
 import org.apache.spark.rdd.RDD
-import org.zzy.dbscan.java.KDRP_DBSCAN.process
+import org.zzy.dbscan.java.TLKD.process
 import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint
-import org.zzy.dbscan.java.model.{KDTree, MC}
+import org.zzy.dbscan.java.TLKDModel.{KDTree, MC}
 
 import scala.collection.JavaConverters._
 
-object process {
+object Process {
   class KDRP_DBSCAN()extends Serializable{
     def buildMCs(points: Iterable[KDBSCANPoint], eps: Double, minPoints:Int, kdTree: KDTree[KDBSCANPoint])={
       val process=new process()
@@ -39,6 +40,13 @@ object process {
       val pp=pointList.map(ss=>ss.asJava)
       val list=process.processPoint(pp.toList.asJava).asScala.toList
       list
+    }
+    def getPointAndNBs(points:Iterable[KDBSCANPoint],eps:Double,minPts:Int,broadcastPointKDTree:Broadcast[KDTree[KDBSCANPoint]])={
+      points.map(p=>{
+        val point=p
+        val list=broadcastPointKDTree.value.reachableMCSearchID(point.getValue, 2*eps).asScala
+        (point,list)
+      })
     }
 //    def processMCs(mcs:Iterable[MC],Eps:Double,MinPts:Int,kdTree:KDTree[KDBSCANPoint],MCList:List[MC])={
 //      val mcPoints=mcs.map(mc=>{

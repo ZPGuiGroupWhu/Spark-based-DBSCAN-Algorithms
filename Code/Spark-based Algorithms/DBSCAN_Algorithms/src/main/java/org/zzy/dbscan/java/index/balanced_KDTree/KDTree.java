@@ -1,7 +1,5 @@
 package org.zzy.dbscan.java.index.balanced_KDTree;
 
-import org.zzy.dbscan.java.kdrp.MCluster;
-
 import java.io.Serializable;
 import java.util.*;
 
@@ -245,25 +243,30 @@ public class KDTree implements Serializable {
      * @param input 输入
      * @return KDTree树
      */
-    public static KDTree build(List<KDBSCANPoint> input){
+    public static KDTree build(List<KDBSCANPoint> input,DBSCANRectange rectange){
+        KDTree tree = new KDTree();
+        tree.kdtree = new Node();
+        if(input.size()==0)return tree;
         int n = input.size();//数据条数
         int m=input.get(0).getValue().length;//维度
         ArrayList<double[]> data =new ArrayList<double[]>(n);
-        for(int i=0;i<n;i++){
-            double[] d = new double[m];
-            for(int j=0;j<m;j++)
-                d[j]=input.get(i).getValue()[j];
-            data.add(d);
+//        for(int i=0;i<n;i++){
+//            double[] d = new double[m];
+//            for(int j=0;j<m;j++)
+//                d[j]=input.get(i).getValue()[j];
+//            data.add(d);
+//        }
+        for(KDBSCANPoint point:input){
+            data.add(point.getValue());
         }
 
         //原始数据每一维度的最小最大值maxmin(0)表示所有维度最小值数组，maxmin(1)表示所有维度最大值数组
-        double[][] maxmin= UtilZ.maxmin(data, m);
+//        double[][] maxmin= UtilZ.maxmin(data, m);
         //这个地方后期可以优化，传进来的直接就是整个数据集的MBR
-        DBSCANRectangle rectangle_kd=new DBSCANRectangle(maxmin[0][0],maxmin[0][1],maxmin[1][0],maxmin[1][1]);
-        KDTree tree = new KDTree();
-        tree.kdtree = new Node();
+//        DBSCANRectange rectange_kd=new DBSCANRectange(maxmin[0][0],maxmin[0][1],maxmin[1][0],maxmin[1][1]);
+
         int level=0;
-        tree.buildDetail(tree.kdtree, data, m,rectangle_kd,level);
+        tree.buildDetail(tree.kdtree, data, m,rectange,level);
         return tree;
     }
     /**
@@ -272,7 +275,7 @@ public class KDTree implements Serializable {
      * @param data 数据
      * @param dimentions 数据的维度
      */
-    private void buildDetail(Node node, ArrayList<double[]> data, int dimentions, DBSCANRectangle rectangle, int level){
+    private void buildDetail(Node node, ArrayList<double[]> data, int dimentions, DBSCANRectange rectange, int level){
         int levelNext=level+1;
         if(data.size()==0){
             return;
@@ -282,8 +285,8 @@ public class KDTree implements Serializable {
            point.setValue(data.get(0));
            node.setLeaf(true);
            node.setValue(point);
-           node.setLeval(level);
-           node.setRectangle(rectangle);
+           node.setLevel(level);
+           node.setRectange(rectange);
            return;
         }
         //选择方差最大的维度
@@ -302,29 +305,29 @@ public class KDTree implements Serializable {
         if(var==0){
             KDBSCANPoint point=new KDBSCANPoint();
             point.setValue(data.get(0));
-            node.setLeval(level);
+            node.setLevel(level);
             node.setLeaf(true);
             node.setValue(point);
-            node.setRectangle(rectangle);
+            node.setRectange(rectange);
             return;
         }
         double[] dataSort= UtilZ.dataSort(data,node.getPartitionDimention());
         double dataMedian=dataSort[dataSort.length/2];
         double dataMin=dataSort[0];
         node.setPartitionValue(dataMedian);
-        node.setRectangle(rectangle);
-        node.setLeval(level);
+        node.setRectange(rectange);
+        node.setLevel(level);
 
         //分割之后的左、右矩形
-        DBSCANRectangle rectangleLeft=new DBSCANRectangle(Double.MAX_VALUE,Double.MAX_VALUE,Double.MIN_VALUE,Double.MIN_VALUE);
-        DBSCANRectangle rectangleRight=new DBSCANRectangle(Double.MAX_VALUE,Double.MAX_VALUE,Double.MIN_VALUE,Double.MIN_VALUE);
+        DBSCANRectange rectangeLeft=new DBSCANRectange(Double.MAX_VALUE,Double.MAX_VALUE,Double.MIN_VALUE,Double.MIN_VALUE);
+        DBSCANRectange rectangeRight=new DBSCANRectange(Double.MAX_VALUE,Double.MAX_VALUE,Double.MIN_VALUE,Double.MIN_VALUE);
         if(node.getPartitionDimention()==0){
-            rectangleLeft=new DBSCANRectangle(rectangle.getX(),rectangle.getY(),node.getPartitionValue(),rectangle.getY2());
-            rectangleRight=new DBSCANRectangle(node.getPartitionValue(),rectangle.getY(),rectangle.getX2(),rectangle.getY2());
+            rectangeLeft=new DBSCANRectange(rectange.getX(),rectange.getY(),node.getPartitionValue(),rectange.getY2());
+            rectangeRight=new DBSCANRectange(node.getPartitionValue(),rectange.getY(),rectange.getX2(),rectange.getY2());
         }
         if(node.getPartitionDimention()==1){
-            rectangleLeft=new DBSCANRectangle(rectangle.getX(),rectangle.getY(),rectangle.getX2(),node.getPartitionValue());
-            rectangleRight=new DBSCANRectangle(rectangle.getX(),node.getPartitionValue(),rectangle.getX2(),rectangle.getY2());
+            rectangeLeft=new DBSCANRectange(rectange.getX(),rectange.getY(),rectange.getX2(),node.getPartitionValue());
+            rectangeRight=new DBSCANRectange(rectange.getX(),node.getPartitionValue(),rectange.getX2(),rectange.getY2());
         }
 
         int size =data.size();
@@ -353,8 +356,8 @@ public class KDTree implements Serializable {
         node.setLeft(leftnode);
         node.setRight(rightnode);
 
-        buildDetail(leftnode, left, dimentions,rectangleLeft,levelNext);
-        buildDetail(rightnode, right, dimentions,rectangleRight,levelNext);
+        buildDetail(leftnode, left, dimentions,rectangeLeft,levelNext);
+        buildDetail(rightnode, right, dimentions,rectangeRight,levelNext);
 
 
     }
@@ -408,14 +411,14 @@ public class KDTree implements Serializable {
      * 获取kd树节点矩形
      * @return 节点矩形
      */
-    public List<DBSCANRectangle> getRectangle(int numPartition){
+    public List<DBSCANRectange> getRectange(int numPartition){
         int partitionNum= (int) (Math.log(numPartition)/Math.log(2));
         Node node=kdtree;
-        List<DBSCANRectangle>list=new ArrayList<>();
+        List<DBSCANRectange>list=new ArrayList<>();
         Stack<Node> stack=new Stack<>();
         while (!node.isLeaf()){
-            if(node.getLeval()==partitionNum){
-                list.add(node.getRectangle());
+            if(node.getLevel()==partitionNum){
+                list.add(node.getRectange());
             }
             if(node.getLeft()!=null){
                 stack.push(node.getRight());
@@ -426,18 +429,18 @@ public class KDTree implements Serializable {
                 node=node.getRight();
             }
         }
-        if(node.isLeaf() && node.getLeval()==partitionNum ){
-            list.add(node.getRectangle());
+        if(node.isLeaf() && node.getLevel()==partitionNum ){
+            list.add(node.getRectange());
         }
         Node nodeRec=null;
         while (!stack.isEmpty()){
             nodeRec=stack.pop();
-            if(nodeRec.isLeaf() && nodeRec.getLeval()==partitionNum){
-                list.add(nodeRec.getRectangle());
+            if(nodeRec.isLeaf() && nodeRec.getLevel()==partitionNum){
+                list.add(nodeRec.getRectange());
             }else{
                 while (!nodeRec.isLeaf()){
-                    if(nodeRec.getLeval()==partitionNum ){
-                        list.add(nodeRec.getRectangle());
+                    if(nodeRec.getLevel()==partitionNum ){
+                        list.add(nodeRec.getRectange());
                     }
 
                     if(nodeRec.getLeft()!=null){
@@ -449,14 +452,13 @@ public class KDTree implements Serializable {
                         nodeRec=nodeRec.getRight();
                     }
                 }
-                if(nodeRec.isLeaf() && nodeRec.getLeval()==partitionNum){
-                    list.add(nodeRec.getRectangle());
+                if(nodeRec.isLeaf() && nodeRec.getLevel()==partitionNum){
+                    list.add(nodeRec.getRectange());
                 }
             }
         }
         return list;
     }
-
 
     /**
      * 范围查询——kdTree
@@ -497,8 +499,8 @@ public class KDTree implements Serializable {
                  * 得到该节点代表的超矩形中点到查找点的最小距离mindistance
                  * 找到mindistance<=Math.pow(eps,2)区域进行判断
                  */
-                double[] max=new double[]{nodeRec.getRectangle().getX2(),nodeRec.getRectangle().getY2()};
-                double[] min=new double[]{nodeRec.getRectangle().getX(),nodeRec.getRectangle().getY()};
+                double[] max=new double[]{nodeRec.getRectange().getX2(),nodeRec.getRectange().getY2()};
+                double[] min=new double[]{nodeRec.getRectange().getX(),nodeRec.getRectange().getY()};
                 double mindistance = UtilZ.mindistance(input, max, min);
                 if (mindistance<=Math.pow(eps,2)) {
                     while(!nodeRec.isLeaf()){

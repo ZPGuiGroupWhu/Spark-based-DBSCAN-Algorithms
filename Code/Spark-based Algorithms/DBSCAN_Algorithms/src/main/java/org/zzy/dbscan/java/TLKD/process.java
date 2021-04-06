@@ -1,10 +1,10 @@
-package org.zzy.dbscan.java.KDRP_DBSCAN;
+package org.zzy.dbscan.java.TLKD;
 
+import org.zzy.dbscan.java.index.balanced_KDTree.DBSCANRectange;
 import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint;
-import org.zzy.dbscan.java.model.KDNode;
-import org.zzy.dbscan.java.model.KDTree;
-import org.zzy.dbscan.java.model.MC;
-import org.zzy.dbscan.java.model.Point;
+import org.zzy.dbscan.java.TLKDModel.KDNode;
+import org.zzy.dbscan.java.TLKDModel.KDTree;
+import org.zzy.dbscan.java.TLKDModel.MC;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -76,7 +76,7 @@ public class process implements Serializable {
         }
     }
 
-    public int processPoint(KDBSCANPoint p, KDNode node, List<KDBSCANPoint> unassignedList, int level, int dimentions, double Eps){
+    public int processPoint(KDBSCANPoint p, KDNode node, List<KDBSCANPoint> unassignedList, int level, int dimensions, double Eps){
         int pFlag=0;
         if(node.getKey().getDist(p)<= Eps){
 //            node.getMc().setPoints(p);
@@ -89,16 +89,16 @@ public class process implements Serializable {
             return 1;
         }
         if(node.getLeft()!=null && p.getValue()[level]<=node.getValue().getValue()[level]){
-            pFlag=processPoint(p,node.getLeft(),unassignedList,(level+1)%dimentions,dimentions,Eps);
+            pFlag=processPoint(p,node.getLeft(),unassignedList,(level+1)%dimensions,dimensions,Eps);
         }
         if(node.getRight()!=null && p.getValue()[level]>node.getValue().getValue()[level]){
-            pFlag=processPoint(p,node.getRight(),unassignedList,(level+1)%dimentions,dimentions,Eps);
+            pFlag=processPoint(p,node.getRight(),unassignedList,(level+1)%dimensions,dimensions,Eps);
         }
 
         return pFlag;
     }
 
-    public int processUnassignedPoint(KDBSCANPoint p, KDNode node, int level, int dimentions, double Eps){
+    public int processUnassignedPoint(KDBSCANPoint p, KDNode node, int level, int dimensions, double Eps){
         int uFlag=0;
         if(node.getKey().getDist(p)<= Eps){
 //            node.getMc().setPoints(p);
@@ -107,10 +107,10 @@ public class process implements Serializable {
             return 1;
         }
         if(node.getLeft()!=null && p.getValue()[level]<=node.getValue().getValue()[level]){
-            uFlag=processUnassignedPoint(p,node.getLeft(),(level+1)%dimentions,dimentions,Eps);
+            uFlag=processUnassignedPoint(p,node.getLeft(),(level+1)%dimensions,dimensions,Eps);
         }
         if(node.getRight()!=null && p.getValue()[level]>node.getValue().getValue()[level]){
-            uFlag=processUnassignedPoint(p,node.getRight(),(level+1)%dimentions,dimentions,Eps);
+            uFlag=processUnassignedPoint(p,node.getRight(),(level+1)%dimensions,dimensions,Eps);
         }
         return uFlag;
     }
@@ -180,5 +180,11 @@ public class process implements Serializable {
             }
         }
         return list;
+    }
+
+    //计算MBR
+    public DBSCANRectange getRectange(Double x1,Double y1,Double x2,Double y2){
+        DBSCANRectange rectange=new DBSCANRectange(x1,y1,x2,y2);
+        return rectange;
     }
 }

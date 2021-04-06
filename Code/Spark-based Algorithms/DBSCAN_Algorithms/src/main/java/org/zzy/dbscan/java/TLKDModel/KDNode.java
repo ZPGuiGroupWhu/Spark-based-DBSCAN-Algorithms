@@ -1,4 +1,4 @@
-package org.zzy.dbscan.java.model;
+package org.zzy.dbscan.java.TLKDModel;
 
 import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint;
 
@@ -85,18 +85,6 @@ public class KDNode implements Serializable {
         return node;
     }
 
-    protected static KDNode searchNode(Point key,KDNode node,int dimension){
-        for(int level=0;node!=null;level=(level+1)%dimension){
-            if(!node.deleted&& key.equals(node.key)){
-                return node;
-            }else if(key.getValue()[level]>node.value.getValue()[level]){
-                node=node.right;
-            }else {
-                node=node.left;
-            }
-        }
-        return null;
-    }
 
     protected static void rangeSearch(KDBSCANPoint lowKey, KDBSCANPoint upKey, KDNode node, int divide, int dimensions,
                                       double[] key, double Eps, Vector<KDNode>nodeVector){
@@ -109,11 +97,14 @@ public class KDNode implements Serializable {
         if(node.value.getValue()[divide]<upKey.getValue()[divide]){
             rangeSearch(lowKey,upKey,node.right,(divide+1)%dimensions,dimensions,key,Eps,nodeVector);
         }
-        int j;
-        for(j=0;j<dimensions && node.value.getValue()[j]>=lowKey.getValue()[j]
-         && node.value.getValue()[j]<=upKey.getValue()[j];j++)
-            ;
-        if((j==dimensions)&&(node.value.getDist(new KDBSCANPoint(key))<Eps)){
+//        int j;
+//        for(j=0;j<dimensions && node.value.getValue()[j]>=lowKey.getValue()[j]
+//         && node.value.getValue()[j]<=upKey.getValue()[j];j++)
+//            ;
+//        if((j==dimensions)&&(node.value.getDist(new KDBSCANPoint(key))<Eps)){
+//            nodeVector.add(node);
+//        }
+        if(node.value.getDist(new KDBSCANPoint(key))<=Eps){
             nodeVector.add(node);
         }
     }

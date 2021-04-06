@@ -10,35 +10,49 @@ import scala.collection.mutable.Queue
 //经典DBSCAN算法
 object DBSCAN {
   def main(args: Array[String]): Unit = {
-    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
+    val master=args(0)
+    val eps=args(1).toDouble
+    val minpts=args(2).toInt
+    val inPath=args(3)
+    val outPath=args(4)
+    val sampleRate=args(5).toDouble
     val conf=new SparkConf()
-    conf.setAppName("dbscan_native")
-    conf.setMaster("local[1]")
-    //    conf.set("spark.executor.memory","12g")
-    val sc=new SparkContext(conf)
-    //使用测试数据
-    //    val lines=sc.textFile("D:/kdsg/in/origin.csv")
-    //使用湖北数据
-    val lines=sc.textFile("C:/Users/ASUS/Desktop/test.csv")
+    conf.setAppName("DBSCAN")
+      .setMaster(master)
+      .set("spark.executor.cores",args(6))
+      .set("spark.cores.max",args(7))
+      .set("spark.executor.memory",args(8))
 
+//    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
+//    val master="local[*]"
+//    val eps="10".toDouble
+//    val minpts="15".toInt
+//    val inPath="D:/KDBSCAN/in/cluto-t7-10k.csv"
+//    val outPath="D:/KDBSCAN/out/cluto-t7-10k_210330"
+//    val sampleRate="1".toDouble
+//    val conf=new SparkConf()
+//    conf.setAppName("DBSCAN")
+//      .setMaster(master)
+
+
+    val sc=new SparkContext(conf)
+    val lines=sc.textFile(inPath)
     val points=lines.map{line=>
       val parts=Vectors.dense(line.split(",").map(_.toDouble))
       val dbscanpoint=new DBSCANPoint(parts)
       dbscanpoint
     }
-
-    val samplePoints=points.sample(false,1) //0.06 0.3 0.63 0.93
-
-    println(samplePoints.collect().length)
-    //对原始数据进行采样
+    val samplePoints=points.sample(false,sampleRate)
+//    val samplePoints=sc.parallelize(points.takeSample(false,250000))
     val samplePointsToIterable=samplePoints.collect().toIterable
-    println("聚类开始："+System.currentTimeMillis())
+    val t1=System.currentTimeMillis()
     //使用原始DBSCAN方法生成结果
-    val samplePoints_native=new DBSCANNaive(20,10).fit(samplePointsToIterable)
-
+    val samplePoints_native=new DBSCANNaive(eps,minpts).fit(samplePointsToIterable)
     val samplePointsRDD_native=sc.parallelize(samplePoints_native.toList)
-    println("聚类结束："+System.currentTimeMillis())
-    samplePointsRDD_native.saveAsTextFile("C:/Users/ASUS/Desktop/dbscan/4")
+    val t2=System.currentTimeMillis()
+    samplePointsRDD_native.repartition(1).saveAsTextFile(outPath)
+    println("聚类时间："+(t2-t1)/1000+"秒")
+    sc.stop()
   }
 
   /**
@@ -117,21 +131,17 @@ object DBSCAN {
               neighbor.flag = Flag.Border
             }
           }
-          if (neighbor.visited){//如果点访问过,则表示不是核心点但是又在类簇内部，所以是边界点
-            neighbor.cluster=cluster
-            neighbor.flag=Flag.Border
-          }
+//          if (neighbor.visited){//如果点访问过,则表示不是核心点但是又在类簇内部，所以是边界点
+//            neighbor.cluster=cluster
+//            neighbor.flag=Flag.Border
+//          }
           //          或者使用如下方法，neighbor不存在cluster为0的情况，即之前访问过的点应重新标记为border并更改类簇编号
-          //          if (neighbor.cluster == DBSCANLabeledPoint.Unknown) {
-          //            neighbor.cluster = cluster
-          //            neighbor.flag = Flag.Border
-          //          }
+            if (neighbor.cluster == DBSCANLabeledPoint.Unknown) {
+              neighbor.cluster = cluster
+              neighbor.flag = Flag.Border
+            }
         })
-
       }
-
     }
-
   }
-
 }

@@ -1,10 +1,8 @@
-package org.zzy.dbscan.java.model;
+package org.zzy.dbscan.java.TLKDModel;
 
 import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MC implements Serializable {
 //    private int id;//超球体的ID，记录个数

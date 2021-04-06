@@ -1,13 +1,10 @@
 package org.zzy.dbscan.java.index.balanced_KDTree;
 
 
-import org.zzy.dbscan.java.kdrp.MCluster;
-import org.zzy.dbscan.java.model.MC;
-
 import java.io.Serializable;
 
 public class Node implements Serializable {
-    private long leval;//定义数据的层数，根节点为0，依次向下
+    private long level;//定义数据的层数，根节点为0，依次向下
     //分割的维度
     private int partitionDimention;
      //分割的值
@@ -25,32 +22,23 @@ public class Node implements Serializable {
      //每个维度的最大值
     private double[] max;
     //每个节点对应的矩形区域
-    private DBSCANRectangle rectangle;
+    private DBSCANRectange rectange;
 
-    private MCluster mCluster;
 
-    public MCluster getmCluster() {
-        return mCluster;
+    public long getLevel() {
+        return level;
     }
 
-    public void setmCluster(MCluster mCluster) {
-        this.mCluster = mCluster;
+    public void setLevel(long level) {
+        this.level = level;
     }
 
-    public long getLeval() {
-        return leval;
+    public DBSCANRectange getRectange() {
+        return rectange;
     }
 
-    public void setLeval(long leval) {
-        this.leval = leval;
-    }
-
-    public DBSCANRectangle getRectangle() {
-        return rectangle;
-    }
-
-    public void setRectangle(DBSCANRectangle rectangle) {
-        this.rectangle = rectangle;
+    public void setRectange(DBSCANRectange rectange) {
+        this.rectange = rectange;
     }
 
     public int getPartitionDimention() {
@@ -116,4 +104,36 @@ public class Node implements Serializable {
     public void setMax(double[] max) {
         this.max = max;
     }
+
+    public static Node insert(KDBSCANPoint point,Node node,int level, DBSCANRectange rectange){
+        if(node==null){
+            Node nodeTemp=new Node();
+            nodeTemp.setRectange(rectange);
+            nodeTemp.setValue(point);
+            nodeTemp.setLevel(level);
+            node=nodeTemp;
+        }
+        else if(point.getValue()[level]>node.getValue().getValue()[level]){
+            DBSCANRectange rectangeRight=new DBSCANRectange(Double.MAX_VALUE,Double.MAX_VALUE,Double.MIN_VALUE,Double.MIN_VALUE);
+            if(level==0){
+                rectangeRight=new DBSCANRectange(node.getValue().getValue()[level],rectange.getY(),rectange.getX2(),rectange.getY2());
+            }
+            if(level==1){
+                rectangeRight=new DBSCANRectange(rectange.getX(),node.getValue().getValue()[level],rectange.getX2(),rectange.getY2());
+            }
+            node.right=insert(point,node.getRight(),(level+1)%point.getValue().length,rectangeRight);
+        }else {
+            //分割之后的左、右矩形
+            DBSCANRectange rectangeLeft=new DBSCANRectange(Double.MAX_VALUE,Double.MAX_VALUE,Double.MIN_VALUE,Double.MIN_VALUE);
+            if(level==0){
+                rectangeLeft=new DBSCANRectange(rectange.getX(),rectange.getY(),node.getValue().getValue()[level],rectange.getY2());
+            }
+            if(level==1){
+                rectangeLeft=new DBSCANRectange(rectange.getX(),rectange.getY(),rectange.getX2(),node.getValue().getValue()[level]);
+            }
+            node.left=insert(point,node.getLeft(),(level+1)%point.getValue().length,rectangeLeft);
+        }
+        return node;
+    }
+
 }

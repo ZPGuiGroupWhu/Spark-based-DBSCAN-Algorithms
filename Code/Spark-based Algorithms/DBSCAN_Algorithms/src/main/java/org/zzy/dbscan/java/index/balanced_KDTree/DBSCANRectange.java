@@ -2,13 +2,13 @@ package org.zzy.dbscan.java.index.balanced_KDTree;
 
 import java.io.Serializable;
 
-public class DBSCANRectangle implements Serializable {
+public class DBSCANRectange implements Serializable {
     private double x;
     private double y;
     private double x2;
     private double y2;
 
-    public DBSCANRectangle(double x, double y, double x2, double y2) {
+    public DBSCANRectange(double x, double y, double x2, double y2) {
         this.x = x;
         this.y = y;
         this.x2 = x2;
@@ -49,7 +49,7 @@ public class DBSCANRectangle implements Serializable {
     /**
      * 矩形在矩形内部（包含边界）
      */
-    public  Boolean contains(DBSCANRectangle other){
+    public  Boolean contains(DBSCANRectange other){
         if(x <= other.x && other.x2 <= x2 && y <= other.y && other.y2 <= y2){
             return true;
         }
@@ -71,9 +71,9 @@ public class DBSCANRectangle implements Serializable {
      * Returns a new box from shrinking this box by the given amount
      * 矩形缩放amount
      */
-    public DBSCANRectangle shrink (double amount){
-        DBSCANRectangle dbscanRectangle=new DBSCANRectangle(x + amount,y + amount,x2 - amount,y2 - amount);
-        return  dbscanRectangle;
+    public DBSCANRectange shrink (double amount){
+        DBSCANRectange dbscanRectange =new DBSCANRectange(x + amount,y + amount,x2 - amount,y2 - amount);
+        return dbscanRectange;
     }
     /**
      * Returns a whether the rectangle contains the point, and the point

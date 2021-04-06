@@ -1,14 +1,15 @@
-package org.zzy.dbscan.scala.algorithms.KDRP_DBSCAN
+package org.zzy.dbscan.scala.algorithms.GRID
 
 import org.apache.spark.ml.linalg.Vectors
 import org.apache.spark.{SparkConf, SparkContext}
-import org.zzy.dbscan.java.index.balanced_KDTree.{DBSCANRectangle, KDBSCANPoint, KDTree}
+import org.zzy.dbscan.java.TLKD.process
+import org.zzy.dbscan.java.index.balanced_KDTree.{DBSCANRectange, KDBSCANPoint, KDTree}
 import org.zzy.dbscan.scala.merge.DBSCANGraph
 
 import scala.collection.JavaConverters._
 
-object kdrpdbscan extends Serializable {
-  type Margins=(DBSCANRectangle,DBSCANRectangle,DBSCANRectangle)// inner、main、outer
+object GRKD_DBSCAN_PARALLEL extends Serializable {
+  type Margins=(DBSCANRectange,DBSCANRectange,DBSCANRectange)// inner、main、outer
   type ClusterId=(Int,Int) // 定义类簇格式(partition,localClusterID)
   def main(args: Array[String]): Unit = {
     //System.setProperty("hadoop.home.dir","D:/kdsg/")//本地缺少hadoop环境，所以要加上
@@ -21,12 +22,11 @@ object kdrpdbscan extends Serializable {
     val sampleRate=args(6).toDouble
     //    val jars: Array[String]=Array(args(7))
     val conf=new SparkConf()
-    conf.setAppName("KDBSCAN")
+    conf.setAppName("GRKD_DBSCAN_PARALLEL")
       .setMaster(master)
       .set("spark.executor.cores",args(7))
       .set("spark.cores.max",args(8))
       .set("spark.executor.memory",args(9))
-//            .setJars(jars)
 
 //    System.setProperty("hadoop.home.dir","D:/KDBSCAN/")//本地缺少hadoop环境，所以要加上
 //    val master="local[*]"
@@ -37,14 +37,11 @@ object kdrpdbscan extends Serializable {
 //    val numPartition="128".toInt
 //    val sampleRate="0.01".toDouble
 //    val conf=new SparkConf()
-//    conf.setAppName("KDBSCAN")
+//    conf.setAppName("GRKD_DBSCAN_PARALLEL")
 //      .setMaster(master)
 
     val sc=new SparkContext(conf)
     val lines=sc.textFile(inPath)
-
-
-
     // 读取数据并转化为向量形式
     val points=lines.map{line=>
       val parts=Vectors.dense(line.split(",").map(_.toDouble))
@@ -55,11 +52,13 @@ object kdrpdbscan extends Serializable {
 //    println("生成采样点之前时间："+System.currentTimeMillis())
     // 生成采样点，采样率为(0,1]
     val sampleVectors=points.sample(false,sampleRate)
-    val originPoints=points.map{vector=>
-      var point=new KDBSCANPoint()
-      point.setValue(Array(vector(1),vector(2)))
-      point
-    }
+
+    val minX =points.map(a=>a(1)).min()
+    val minY =points.map(a=>a(2)).min()
+    val maxX =points.map(a=>a(1)).max()
+    val maxY =points.map(a=>a(2)).max()
+    val rectange=new process().getRectange(minX,minY,maxX,maxY)
+
     val samplePoints=sampleVectors.map{vector=>
       var point=new KDBSCANPoint()
       point.setValue(Array(vector(1),vector(2)))
@@ -68,7 +67,7 @@ object kdrpdbscan extends Serializable {
 //    println("生成采样点之后时间："+System.currentTimeMillis())
 
     //获取分区矩形
-    val rectangleList=KDTree.build(samplePoints.toLocalIterator.toList.asJava).getRectangle(numPartition).asScala.toList
+    val rectangleList=KDTree.build(samplePoints.toLocalIterator.toList.asJava,rectange).getRectange(numPartition).asScala.toList
 //    println("获取分区矩形时间："+System.currentTimeMillis())
 
     //生成内中外矩形
@@ -92,15 +91,16 @@ object kdrpdbscan extends Serializable {
 
     val numOfPartitions=rectangleList.size
 //    println("本地聚类之前时间："+System.currentTimeMillis())
+    var partingTime=System.currentTimeMillis()
     //本地聚类
     val clustered =
       duplicated
         .groupByKey(numOfPartitions) // 将相同的key的值分组为单个序列，将结果分为numOfPartitions个分区
         .flatMapValues(points =>
-        new KDRP.KDRP(points,eps,minpts).fit())
+        new GRKD_DBSCAN.KDBSCAN(points,eps,minpts).fit())
         .cache()
 //    clustered.foreach(println)
-
+    var localClusteringTime=System.currentTimeMillis()
     //    println("本地聚类之后时间："+System.currentTimeMillis())
 
     //找到所有的待合并点
@@ -174,12 +174,12 @@ object kdrpdbscan extends Serializable {
           }
         }.values
 //    println("全局类簇生成之后时间："+System.currentTimeMillis())
-
-    labeledMain.repartition(1).saveAsTextFile(outPath)
     var endTime=System.currentTimeMillis()
-    println("结束时间："+endTime)
+    labeledMain.repartition(1).saveAsTextFile(outPath)
+    println("分区时间："+(partingTime-startTime)/1000+"秒")
+    println("本地聚类时间："+(localClusteringTime-partingTime)/1000+"秒")
+    println("聚类合并和重标记："+(endTime-localClusteringTime)/1000+"秒")
     println("聚类时间："+(endTime-startTime)/1000+"秒")
-//    println("数据输出之后时间："+System.currentTimeMillis())
     sc.stop()
   }
   private def isMainPoint(
