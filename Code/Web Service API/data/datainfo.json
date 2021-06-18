@@ -1,0 +1,9 @@
+{
+    "dataID": 1,
+    "dataName": "全国企业POI",
+    "subRanges": ["重庆", "湖北", "北京", "天津", "上海", "四川", "..."],
+    "dataSources": ["全国企业POI", "重庆市企业POI"],
+    "dataProperties": ["第一产业","第二产业","第三产业"],
+    "dataNum": 1540495,
+    "propertiesNum": [268148, 348592, 923755]
+}

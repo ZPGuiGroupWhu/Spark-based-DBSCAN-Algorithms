@@ -8,7 +8,7 @@ import org.zzy.dbscan.java.index.balanced_KDTree.KDBSCANPoint
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable
-
+//格网和KD树双层索引版本。第一层索引是格网，第二程是KD树
 object GRKD_DBSCAN {
   def main(args: Array[String]): Unit = {
         val master=args(0)

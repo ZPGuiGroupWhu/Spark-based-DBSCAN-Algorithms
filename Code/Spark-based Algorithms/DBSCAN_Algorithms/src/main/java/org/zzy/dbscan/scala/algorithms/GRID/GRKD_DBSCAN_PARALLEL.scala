@@ -7,7 +7,7 @@ import org.zzy.dbscan.java.index.balanced_KDTree.{DBSCANRectange, KDBSCANPoint, 
 import org.zzy.dbscan.scala.merge.DBSCANGraph
 
 import scala.collection.JavaConverters._
-
+//GRKD-DBSCXAN并行版本
 object GRKD_DBSCAN_PARALLEL extends Serializable {
   type Margins=(DBSCANRectange,DBSCANRectange,DBSCANRectange)// inner、main、outer
   type ClusterId=(Int,Int) // 定义类簇格式(partition,localClusterID)
