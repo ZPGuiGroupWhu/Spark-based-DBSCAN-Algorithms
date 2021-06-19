@@ -44,7 +44,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/GRID/GRKD_DBSCAN_PARALLEL.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-180">
+            <state relative-caret-position="-90">
               <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
               <folding>
                 <element signature="e#46#87#0" expanded="true" />
@@ -237,8 +237,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDSG/KDBSCAN.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/KDSG/KDBSCAN_PARALLEL.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/GRID/GRKD_DBSCAN_PARALLEL.scala" />
         <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/GRID/GRKD_DBSCAN.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/GRID/GRKD_DBSCAN_PARALLEL.scala" />
       </list>
     </option>
   </component>
@@ -663,12 +663,12 @@
       <workItem from="1622888205567" duration="3807000" />
       <workItem from="1623238175131" duration="623000" />
       <workItem from="1623287170765" duration="5732000" />
-      <workItem from="1623967701209" duration="1389000" />
+      <workItem from="1623967701209" duration="3510000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="692400000" />
+    <option name="totallyTimeSpent" value="694521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -681,6 +681,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3036193" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1143,7 +1144,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/zzy/dbscan/scala/algorithms/GRID/GRKD_DBSCAN_PARALLEL.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
+        <state relative-caret-position="-90">
           <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding>
             <element signature="e#46#87#0" expanded="true" />
