@@ -28,7 +28,7 @@ object DBSCAN {
 //    val eps="10".toDouble
 //    val minpts="15".toInt
 //    val inPath="D:/KDBSCAN/in/cluto-t7-10k.csv"
-//    val outPath="D:/KDBSCAN/out/cluto-t7-10k_210330"
+//    val outPath="D:/KDBSCAN/out/cluto-t7-10k_210628"
 //    val sampleRate="1".toDouble
 //    val conf=new SparkConf()
 //    conf.setAppName("DBSCAN")
@@ -51,6 +51,7 @@ object DBSCAN {
     val samplePointsRDD_native=sc.parallelize(samplePoints_native.toList)
     val t2=System.currentTimeMillis()
     samplePointsRDD_native.repartition(1).saveAsTextFile(outPath)
+//    samplePointsRDD_native.saveAsTextFile(outPath+"ForAPI")
     println("聚类时间："+(t2-t1)/1000+"秒")
     sc.stop()
   }

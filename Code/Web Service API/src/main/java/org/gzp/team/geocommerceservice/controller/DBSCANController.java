@@ -27,8 +27,7 @@ public class DBSCANController {
             @ApiImplicitParam(name = "sampleRate", value = "数据采样率，例如：0.01", required = true),
             @ApiImplicitParam(name = "executorCores", value = "单节点核数,例如：8", required = true),
             @ApiImplicitParam(name = "coresMax", value = "集群总核数，例如：64", required = true),
-            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10g", required = true),
-            @ApiImplicitParam(name = "defaultDFS", value = "HDFS地址，例如：hdfs://192.168.200.148:9000", required = true),
+            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10", required = true),
             @ApiImplicitParam(name = "masterHost", value = "主节点IP，例如：192.168.200.148", required = true),
             @ApiImplicitParam(name = "appResource", value = "Jar包地址，例如：hdfs://192.168.200.148:9000/spark/in/DBSCANAlgorithms-1.0-SNAPSHOT.jar", required = true)
 
@@ -43,7 +42,6 @@ public class DBSCANController {
                                   String executorCores,
                                   String coresMax,
                                   String executorMemory,
-                                  String defaultDFS,
                                   String masterHost,
                                   String sparkVersion,
                                   String appResource
@@ -58,7 +56,6 @@ public class DBSCANController {
                                                 executorCores,
                                                 coresMax,
                                                 executorMemory,
-                                                defaultDFS,
                                                 masterHost,
                                                 sparkVersion,
                                                 appResource);
@@ -78,8 +75,7 @@ public class DBSCANController {
             @ApiImplicitParam(name = "sampleRate", value = "数据采样率，例如：0.01", required = true),
             @ApiImplicitParam(name = "executorCores", value = "单节点核数,例如：8", required = true),
             @ApiImplicitParam(name = "coresMax", value = "集群总核数，例如：64", required = true),
-            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10g", required = true),
-            @ApiImplicitParam(name = "defaultDFS", value = "HDFS地址，例如：hdfs://192.168.200.148:9000", required = true),
+            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10", required = true),
             @ApiImplicitParam(name = "masterHost", value = "主节点IP，例如：192.168.200.148", required = true),
             @ApiImplicitParam(name = "appResource", value = "Jar包地址，例如：hdfs://192.168.200.148:9000/spark/in/DBSCANAlgorithms-1.0-SNAPSHOT.jar", required = true)
 
@@ -94,7 +90,6 @@ public class DBSCANController {
                                     String executorCores,
                                     String coresMax,
                                     String executorMemory,
-                                    String defaultDFS,
                                     String masterHost,
                                     String sparkVersion,
                                     String appResource
@@ -109,7 +104,6 @@ public class DBSCANController {
                 executorCores,
                 coresMax,
                 executorMemory,
-                defaultDFS,
                 masterHost,
                 sparkVersion,
                 appResource);
@@ -129,8 +123,7 @@ public class DBSCANController {
             @ApiImplicitParam(name = "sampleRate", value = "数据采样率，例如：0.01", required = true),
             @ApiImplicitParam(name = "executorCores", value = "单节点核数,例如：8", required = true),
             @ApiImplicitParam(name = "coresMax", value = "集群总核数，例如：64", required = true),
-            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10g", required = true),
-            @ApiImplicitParam(name = "defaultDFS", value = "HDFS地址，例如：hdfs://192.168.200.148:9000", required = true),
+            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10", required = true),
             @ApiImplicitParam(name = "masterHost", value = "主节点IP，例如：192.168.200.148", required = true),
             @ApiImplicitParam(name = "appResource", value = "Jar包地址，例如：hdfs://192.168.200.148:9000/spark/in/DBSCANAlgorithms-1.0-SNAPSHOT.jar", required = true)
 
@@ -145,7 +138,6 @@ public class DBSCANController {
                                     String executorCores,
                                     String coresMax,
                                     String executorMemory,
-                                    String defaultDFS,
                                     String masterHost,
                                     String sparkVersion,
                                     String appResource
@@ -160,7 +152,6 @@ public class DBSCANController {
                 executorCores,
                 coresMax,
                 executorMemory,
-                defaultDFS,
                 masterHost,
                 sparkVersion,
                 appResource);
@@ -179,8 +170,7 @@ public class DBSCANController {
             @ApiImplicitParam(name = "sampleRate", value = "数据采样率，例如：0.01", required = true),
             @ApiImplicitParam(name = "executorCores", value = "单节点核数,例如：8", required = true),
             @ApiImplicitParam(name = "coresMax", value = "集群总核数，例如：64", required = true),
-            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10g", required = true),
-            @ApiImplicitParam(name = "defaultDFS", value = "HDFS地址，例如：hdfs://192.168.200.148:9000", required = true),
+            @ApiImplicitParam(name = "executorMemory", value = "单节点内存，例如：10", required = true),
             @ApiImplicitParam(name = "masterHost", value = "主节点IP，例如：192.168.200.148", required = true),
             @ApiImplicitParam(name = "appResource", value = "Jar包地址，例如：hdfs://192.168.200.148:9000/spark/in/DBSCANAlgorithms-1.0-SNAPSHOT.jar", required = true)
 
@@ -195,7 +185,6 @@ public class DBSCANController {
                                     String executorCores,
                                     String coresMax,
                                     String executorMemory,
-                                    String defaultDFS,
                                     String masterHost,
                                     String sparkVersion,
                                     String appResource
@@ -210,32 +199,20 @@ public class DBSCANController {
                 executorCores,
                 coresMax,
                 executorMemory,
-                defaultDFS,
                 masterHost,
                 sparkVersion,
                 appResource);
     }
 
 
-
-
-
-
-
     @RequestMapping(value = "/getResult",method = RequestMethod.GET)
     @CrossOrigin
     @ApiOperation(value = "获取算法计算结果")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "outPath", value = "输出数据地址，例如：hdfs://192.168.200.148:9000/spark/out/POI_GRKD_DBSCAN", required = true),
-            @ApiImplicitParam(name = "defaultDFS", value = "HDFS地址，例如：hdfs://192.168.200.148:9000", required = true),
-            @ApiImplicitParam(name = "pageNum", value = "获取数据的页码，例如：0表示第一页数据", required = true)
+            @ApiImplicitParam(name = "outPath", value = "输出数据地址，例如：hdfs://192.168.200.148:9000/spark/out/POI_GRKD_DBSCANForApis/part-00000", required = true)
 
     })
-    public String getNanocubeData(
-                                  String outPath,
-                                  String defaultDFS,
-                                  int pageNum
-    ){
-        return dbscanService.getResult(outPath,defaultDFS,pageNum);
+    public String getNanocubeData(String outPath){
+        return dbscanService.getResult(outPath);
     }
 }

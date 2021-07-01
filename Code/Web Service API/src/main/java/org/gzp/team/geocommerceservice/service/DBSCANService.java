@@ -1,5 +1,6 @@
 package org.gzp.team.geocommerceservice.service;
 
+import org.apache.hadoop.fs.FileStatus;
 import org.gzp.team.geocommerceservice.model.ServiceResult;
 import org.gzp.team.geocommerceservice.model.geojson.Feature2;
 import org.gzp.team.geocommerceservice.model.geojson.Geometry;
@@ -30,7 +31,6 @@ public class DBSCANService {
                                    String executorCores,
                                    String coresMax,
                                    String executorMemory,
-                                   String defaultDFS,
                                    String masterHost,
                                    String sparkVersion,
                                    String appResource){
@@ -47,7 +47,8 @@ public class DBSCANService {
                 .sparkVersion(sparkVersion)
                 .build();
         try {
-
+            outPath=outPath+cur;
+            executorMemory=executorMemory+'g';
             String[] schemas = {
                     master,
                     eps,
@@ -81,7 +82,7 @@ public class DBSCANService {
                 }
             }
             Thread.sleep(10000);
-            return getServiceResult(outPath,defaultDFS);
+            return getServiceResult(outPath);
         } catch (FailedSparkRequestException e) {
             e.printStackTrace();
             return "error";
@@ -106,7 +107,6 @@ public class DBSCANService {
                                    String executorCores,
                                    String coresMax,
                                    String executorMemory,
-                                   String defaultDFS,
                                    String masterHost,
                                    String sparkVersion,
                                    String appResource){
@@ -123,7 +123,8 @@ public class DBSCANService {
                 .sparkVersion(sparkVersion)
                 .build();
         try {
-
+            outPath=outPath+cur;
+            executorMemory=executorMemory+'g';
             String[] schemas = {
                     master,
                     eps,
@@ -157,7 +158,7 @@ public class DBSCANService {
                 }
             }
             Thread.sleep(10000);
-            return getServiceResult(outPath,defaultDFS);
+            return getServiceResult(outPath);
         } catch (FailedSparkRequestException e) {
             e.printStackTrace();
             return "error";
@@ -182,7 +183,6 @@ public class DBSCANService {
                                    String executorCores,
                                    String coresMax,
                                    String executorMemory,
-                                   String defaultDFS,
                                    String masterHost,
                                    String sparkVersion,
                                    String appResource){
@@ -199,7 +199,8 @@ public class DBSCANService {
                 .sparkVersion(sparkVersion)
                 .build();
         try {
-
+            outPath=outPath+cur;
+            executorMemory=executorMemory+'g';
             String[] schemas = {
                     master,
                     eps,
@@ -233,7 +234,7 @@ public class DBSCANService {
                 }
             }
             Thread.sleep(10000);
-            return getServiceResult(outPath,defaultDFS);
+            return getServiceResult(outPath);
         } catch (FailedSparkRequestException e) {
             e.printStackTrace();
             return "error";
@@ -258,7 +259,6 @@ public class DBSCANService {
                                    String executorCores,
                                    String coresMax,
                                    String executorMemory,
-                                   String defaultDFS,
                                    String masterHost,
                                    String sparkVersion,
                                    String appResource){
@@ -275,7 +275,8 @@ public class DBSCANService {
                 .sparkVersion(sparkVersion)
                 .build();
         try {
-
+            outPath=outPath+cur;
+            executorMemory=executorMemory+'g';
             String[] schemas = {
                     master,
                     eps,
@@ -309,7 +310,7 @@ public class DBSCANService {
                 }
             }
             Thread.sleep(10000);
-            return getServiceResult(outPath,defaultDFS);
+            return getServiceResult(outPath);
         } catch (FailedSparkRequestException e) {
             e.printStackTrace();
             return "error";
@@ -323,37 +324,25 @@ public class DBSCANService {
         }
     }
 
-
-
-    public String getServiceResult(String path,String defaultDFS) {
-        String defaultFs = defaultDFS;
-        String remoteFilePath = path+"/part-00000";
+    public String getServiceResult(String path) {
+        String defaultFs = "hdfs://"+path.split("/")[2];
+        String remoteFilePath = path+"ForApis";
 
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS", defaultFs);
         try {
             FileSystem fs = FileSystem.get(conf);
             Path remotePath = new Path(remoteFilePath);
-            FSDataInputStream in = fs.open(remotePath);
-            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-            String line;
-            long totalCount=0;
-            int pages=0;
-            while ((line = br.readLine()) != null) {
-                totalCount=totalCount+1;
-            }
-            //每十万条记录一次
-            if(totalCount%100000==0){
-                pages=(int) totalCount/100000;
-            }else {
-                pages=(int) totalCount/100000+1;
+            FileStatus[] fileStatuses=fs.listStatus(remotePath);
+            List<String> stringList=new ArrayList<>();
+            for(FileStatus fileStatus:fileStatuses){
+                String fullpath=fileStatus.getPath().toString();
+                if(fullpath.split("/")[6].startsWith("part-"))
+                    stringList.add(fullpath);
             }
             SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             String dateTime=dateFormat.format(new Date());
-            ServiceResult serviceResult=new ServiceResult(totalCount,dateTime,pages);
-
-            br.close();
-            in.close();
+            ServiceResult serviceResult=new ServiceResult(stringList,dateTime);
             fs.close();
             return com.alibaba.fastjson.JSON.toJSONString(serviceResult);
         } catch (IOException e) {
@@ -362,9 +351,9 @@ public class DBSCANService {
         }
     }
 
-    public String getResult(String path,String defaultDFS,int pageNum) {
-        String defaultFs = defaultDFS;
-        String remoteFilePath = path+"/part-00000";
+    public String getResult(String path) {
+        String defaultFs = "hdfs://"+path.split("/")[2];
+        String remoteFilePath = path;
 
         Configuration conf = new Configuration();
         conf.set("fs.defaultFS", defaultFs);
@@ -378,17 +367,10 @@ public class DBSCANService {
             while ((line = br.readLine()) != null) {
                strings.add(line);
             }
-            int length=strings.size();
-            int start=100000*pageNum;
-            int end=100000*(pageNum+1);
-            if(end>=length){
-                end=length;
-            }
-            List<String> strings2=strings.subList(start,end);
             JSON geoJson=new JSON();
             geoJson.setType("FeatureCollection");
             List<Feature2>list=new ArrayList<>();
-            for(String s:strings2){
+            for(String s:strings){
                 String[] columns=s.split(",");
                 Feature2 feature=new Feature2();
                 feature.setType("Feature");
@@ -415,46 +397,4 @@ public class DBSCANService {
         }
     }
 
-//
-//    public String getResult2(String path,String defaultDFS,int pageNum) {
-//        String defaultFs = defaultDFS;
-//        String remoteFilePath = path+"/part-00000";
-//
-//        Configuration conf = new Configuration();
-//        conf.set("fs.defaultFS", defaultFs);
-//        JSON geoJson=new JSON();
-//        try {
-//            FileSystem fs = FileSystem.get(conf);
-//            Path remotePath = new Path(remoteFilePath);
-//            FSDataInputStream in = fs.open(remotePath);
-//            BufferedReader br = new BufferedReader(new InputStreamReader(in));
-//            String line;
-//            geoJson.setType("FeatureCollection");
-//            List<Feature2>list=new ArrayList<>();
-//            while ((line = br.readLine()) != null) {
-//                String[] columns=line.split(",");
-//                Feature2 feature=new Feature2();
-//                feature.setType("Feature");
-//                Geometry geometry=new Geometry();
-//                geometry.setType("Point");
-//                List<Double> list1=new ArrayList();
-//                list1.add(Double.parseDouble(columns[0]));
-//                list1.add(Double.parseDouble(columns[1]));
-//                geometry.setCoordinates(list1);
-//                feature.setGeometry(geometry);
-//                Map map=new HashMap();
-//                map.put("color",columns[2]);
-//                feature.setProperties(map);
-//                list.add(feature);
-//            }
-//            geoJson.setFeatures(list);
-//            br.close();
-//            in.close();
-//            fs.close();
-//            return com.alibaba.fastjson.JSON.toJSONString(geoJson);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return e.toString();
-//        }
-//    }
 }

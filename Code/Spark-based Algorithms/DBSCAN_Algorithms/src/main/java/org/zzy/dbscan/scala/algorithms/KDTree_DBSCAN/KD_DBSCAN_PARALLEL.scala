@@ -175,7 +175,8 @@ object KD_DBSCAN_PARALLEL extends Serializable {
         }.values
 //    println("全局类簇生成之后时间："+System.currentTimeMillis())
     var endTime=System.currentTimeMillis()
-    labeledMain.repartition(1).saveAsTextFile(outPath)
+//    labeledMain.repartition(1).saveAsTextFile(outPath)
+    labeledMain.saveAsTextFile(outPath+"ForApis")
     println("分区时间："+(partingTime-startTime)/1000+"秒")
     println("本地聚类时间："+(localClusteringTime-partingTime)/1000+"秒")
     println("聚类合并和重标记："+(endTime-localClusteringTime)/1000+"秒")
