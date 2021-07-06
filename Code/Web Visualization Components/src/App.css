@@ -1,0 +1,36 @@
+.left-moudles{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+  
+  .right-moudles{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  .hidden{
+    display: none;
+  }
+  
+  
+  .bottom {
+    bottom: 0;
+  }
+  
+  .language-change {
+    border: 0px solid white;
+    border-radius: 10px;
+    margin: 1px 3px 1px 3px;
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+    width: 70px;
+    font-size: 8px;
+    color: white;
+  }
+  
+  .language-change:hover {
+    cursor: pointer;
+  }
